@@ -1,4 +1,8 @@
 const Users = require('../models/usersModel');
+const argon2 = require("argon2"); //https://github.com/ranisalt/node-argon2/wiki/Options
+const jwt = require("jsonwebtoken");
+const validator = require("validator");
+const jwt_secret = process.env.JWT_SECRET;
 // const ObjectId = require('mongoose').Types.ObjectId;
 class UsersController {
     // Display all users

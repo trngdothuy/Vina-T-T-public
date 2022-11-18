@@ -1,12 +1,22 @@
 const express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
-    categoryRoute = require('./routes/CategoryRoute')
-    productRoute = require('./routes/ProductRoute')
+    categoryRoute = require('./routes/CategoryRoute'),
+    productRoute = require('./routes/ProductRoute'),
     userRoute = require('./routes/UserRoute')
+
+    require("dotenv").config({path: './.env'});
+
+    const port = process.env.PORT || 3040
+
 
 // to print incoming requests from mongoose in the terminal
 mongoose.set('debug',true)
+
+//================ CORS ================================
+const cors = require("cors");
+app.use(cors());
+
 // =================== setting to use the body of a request ===================
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
@@ -14,7 +24,7 @@ app.use(express.json())
 // connecting to mongo and checking if DB is running
 async function connecting(){
 try {
-    await mongoose.connect('mongodb+srv://dtt2312:Trang123@cluster0.b4coe7a.mongodb.net/project1?retryWrites=true&w=majority')
+    await mongoose.connect(process.env.MONGO)
     console.log('Connected to the DB')
 } catch ( error ) {
     console.log('ERROR: Seems like your DB is not running, please start it up !!!');
@@ -43,8 +53,9 @@ const adminOptions = {
   }
 const admin = new AdminJS(adminOptions)
 const router = AdminJSExpress.buildRouter(admin);
+
 app.use(admin.options.rootPath, router);
 // end admin bro
 
 // Set the server to listen on port 
-app.listen(4000, () => console.log(`listening on port 4000`))
+app.listen(port, () => console.log(`server listening on port ${port}`));
