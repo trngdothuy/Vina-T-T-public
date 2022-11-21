@@ -4,7 +4,7 @@ const express     = require('express'),
 
 //  == This route will give us back all todos: ==  //
 
-router.get('/categories', controller.findAll);
+router.get('/..', controller.findAll);
 
 //  == This route will give us back one todo, it will be that with the id we are providing: ==  //
 

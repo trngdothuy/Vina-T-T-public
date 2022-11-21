@@ -36,7 +36,7 @@ connecting()
 // routes
 app.use('/category', categoryRoute);
 app.use('/product', productRoute);
-app.use('/user', userRoute);
+app.use('/users', userRoute);
 
 // Admin Bro
 // npm i adminjs @adminjs/express @adminjs/mongoose  tslib express-formidable express-session

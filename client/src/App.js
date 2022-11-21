@@ -15,7 +15,7 @@ import { URL } from "./config";
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);// normal value is null
 
   const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
 
@@ -25,7 +25,7 @@ function App() {
         debugger
         try {
           if (!token) {
-            setIsLoggedIn(false)
+            setIsLoggedIn(false) // should be false
           }else {
           axios.defaults.headers.common['Authorization'] = token;
           const response = await axios.post(`${URL}/users/verify_token`);
@@ -52,11 +52,11 @@ function App() {
   };
   return (
     <Router>
-    <Navbar  isLoggedIn={isLoggedIn}/>
+    <Navbar isLoggedIn={isLoggedIn}/>
     <Routes>
     <Route path="/" element={<Home/>} />
     <Route path="/products" element={<Products/>} />
-    <Route path="/factory-tour" element={<FactoryTour/>} />
+    <Route path="/factorytour" element={<FactoryTour/>} />
     <Route path="/tips" element={<Tips/>} />
     <Route path="/contact-us" element={<ContactUs/>} />
     <Route

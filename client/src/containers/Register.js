@@ -20,7 +20,7 @@ const Register = (props) => {
 
 	const handleSubmit = async (e) => {
 		debugger
-		e.preventDefault();
+		// e.preventDefault();
 		try {
 			const response = await axios.post(`${URL}/users/register`, {
 				email: form.email,

@@ -2,20 +2,101 @@ const Users = require('../models/usersModel');
 const argon2 = require("argon2"); //https://github.com/ranisalt/node-argon2/wiki/Options
 const jwt = require("jsonwebtoken");
 const validator = require("validator");
+require("dotenv").config({path: './.env'});
 const jwt_secret = process.env.JWT_SECRET;
 // const ObjectId = require('mongoose').Types.ObjectId;
 class UsersController {
-    // Display all users
-    async findAll(req, res){
-        try{
-            const users = await Users.find({});
-            res.send({ ok: true, data: users});
-        }
-        catch(e){
-            res.send({e})
-        }
+  // Display all users
+  async findAll(req, res){
+    let {user} = req.params;
+    if (user.admin === true) {
+      try{
+        const users = await Users.find({});
+        res.send({ ok: true, data: users});
     }
-    // Display one user
+    catch(e){
+        res.send({e})
+    }
+    }
+  }
+
+    // Register
+    // the client is sending this body object
+//  {
+//     email: form.email,
+//     password: form.password,
+//     password2: form.password2
+//  }
+async register (req, res) {
+  const { email, password, password2 } = req.body;
+  if (!email || !password || !password2){
+    return res.json({ ok: false, message: "All fields required" });
+  }
+  if (password !== password2){
+    return res.json({ ok: false, message: "Passwords must match" });
+  }
+  if (!validator.isEmail(email)){
+    return res.json({ ok: false, message: "Invalid credentials" });
+  }
+  try {
+    const user = await Users.findOne({ email });
+    if (user) return res.json({ ok: false, message: "Invalid credentials" });
+    const hash = await argon2.hash(password); 
+    console.log("hash ==>", hash);
+    const newUser = {
+      email,
+      password: hash,
+    };
+    await Users.create(newUser);
+    res.json({ ok: true, message: "Successfully registered" });
+  } catch (error) {
+    res.json({ ok: false, error });
+  }
+};
+// LOGIN
+// the client is sending this body object
+//  {
+//     email: form.email,
+//     password: form.password
+//  }
+  async login (req, res) {
+  const { email, password } = req.body;
+  if (!email || !password){
+    return res.json({ ok: false, message: "All field are required" });
+  }
+  if (!validator.isEmail(email)){
+    return res.json({ ok: false, message: "invalid data provided" });
+  }
+  try {
+    const user = await Users.findOne({ email });
+    if (!user) return res.json({ ok: false, message: "invalid data provided" });
+    const match = await argon2.verify(user.password, password);
+    if (match) {
+      // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 142
+      const token = jwt.sign({userEmail:user.email}, jwt_secret, { expiresIn: "1h" }); //{expiresIn:'365d'}
+      // after we send the payload to the client you can see how to get it in the client's Login component inside handleSubmit function
+      res.json({ ok: true, message: "welcome back", token, email });
+    } else return res.json({ ok: false, message: "invalid data provided" });
+  } catch (error) {
+    console.log(error)
+    res.json({ ok: false, error });
+  }
+};
+// verify token
+async verify_token (req, res) {
+  // console.log(req.headers.authorization);
+  const token = req.headers.authorization;
+  jwt.verify(token, jwt_secret, (err, succ) => {
+    err
+      ? res.json({ ok: false, message: "something went wrong" })
+      : res.json({ ok: true, succ });
+  });
+}
+
+
+
+
+    // Display one user - check if admin or user itseld - match token 
     async findOne(req ,res){
         let {user} = req.params;
         try{
@@ -32,32 +113,33 @@ class UsersController {
         }
     }
     // Create a new user
-    async insert (req, res) {
-        let { user } = req.body;
-        try{
-            const result = await Users.findOne({name: user.email});
-            // console.log(`this is` + result);
-            if (result === null) {
-                const done = await Users.create({email: user.email,
-                    password: user.password,
-                    name: user.name})
-                res.send({ ok: true, data: `user ${user.email} added successfully` })
-            } else {
-                res.send({ ok: true, data: `user ${user.email} already exists` })
-            }
-        }
-        catch(e){
-            // console.log(e)
-            if (e.code == 11000) {
-                res.send({ ok: true, data: `user ${user.email} already exists` })
-            } else {res.send({e})}
-        }
-    }
-    // Delete that user 
+    // async insert (req, res) {
+    //     let { user } = req.body;
+    //     try{
+    //         const result = await Users.findOne({name: user.email});
+    //         // console.log(`this is` + result);
+    //         if (result === null) {
+    //             const done = await Users.create({email: user.email,
+    //                 password: user.password,
+    //                 name: user.name})
+    //             res.send({ ok: true, data: `user ${user.email} added successfully` })
+    //         } else {
+    //             res.send({ ok: true, data: `user ${user.email} already exists` })
+    //         }
+    //     }
+    //     catch(e){
+    //         // console.log(e)
+    //         if (e.code == 11000) {
+    //             res.send({ ok: true, data: `user ${user.email} already exists` })
+    //         } else {res.send({e})}
+    //     }
+    // }
+    // Delete that user  - admin or user itself 
     async delete (req, res){
         // console.log('delete!!!')
         let { user } = req.body;
-        try{
+        if (user.admin === true) {
+          try{
             const removed = await Users.deleteOne({ email: user.email });
             // console.log(removed)
             if (removed.deletedCount === 0 ) {
@@ -69,6 +151,7 @@ class UsersController {
         catch(error){
             res.send({error});
         };
+        }
     }
     // UPDATE info
 
@@ -96,7 +179,6 @@ class UsersController {
             } else {res.send({error})}
         };
     }
-
-
+    
 };
 module.exports = new UsersController();
