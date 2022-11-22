@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({isLoggedIn}) => {
+const Navbar = ({isLoggedIn,admin}) => {
 
   return (
     <div className="navbar">
@@ -75,15 +75,30 @@ const Navbar = ({isLoggedIn}) => {
       Account
       </NavLink>
         }
+
+    {isLoggedIn===true && admin===true &&
+          <NavLink  
+          to="/internal"
+          style={ ({isActive}) => (
+            isActive ? linkStyles.activeLink : linkStyles.defaultLink
+            )}>
+          Internal
+          </NavLink>
+            }
+
       </div>
+
+      
       );
+
+      
 }
 
 export default Navbar;
 
 const linkStyles = {
   activeLink: {
-    color: "gray",
+    color: "blue",
   },
   defaultLink: {
     textDecoration: "none",

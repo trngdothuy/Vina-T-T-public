@@ -8,15 +8,14 @@ const jwt_secret = process.env.JWT_SECRET;
 class UsersController {
   // Display all users
   async findAll(req, res){
-    let {user} = req.params;
-    if (user.admin === true) {
+    // let {user} = req.params;
+    // if (user.admin === true) {
       try{
         const users = await Users.find({});
         res.send({ ok: true, data: users});
     }
     catch(e){
         res.send({e})
-    }
     }
   }
 
@@ -73,9 +72,9 @@ async register (req, res) {
     const match = await argon2.verify(user.password, password);
     if (match) {
       // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 142
-      const token = jwt.sign({userEmail:user.email}, jwt_secret, { expiresIn: "1h" }); //{expiresIn:'365d'}
+      const token = jwt.sign({userEmail:user.email,admin:user.admin}, jwt_secret, { expiresIn: "1h" }); //{expiresIn:'365d'}
       // after we send the payload to the client you can see how to get it in the client's Login component inside handleSubmit function
-      res.json({ ok: true, message: "welcome back", token, email });
+      res.json({ ok: true, message: "welcome back", token, email, admin:user.admin });
     } else return res.json({ ok: false, message: "invalid data provided" });
   } catch (error) {
     console.log(error)
@@ -93,25 +92,29 @@ async verify_token (req, res) {
   });
 }
 
-
-
-
     // Display one user - check if admin or user itseld - match token 
     async findOne(req ,res){
-        let {user} = req.params;
-        try{
-            const result = await Users.findOne({email: user.email});
-            // console.log(`this is` + result);
-            if (result === null) {
-                res.send({ ok: true, data: `User ${user.email} doesn't exist` });
-            } else {
-                res.send({ok:true, data:result});
-            } 
-        }
-        catch(e){
-            res.send({e})
-        }
-    }
+      let {user} = req.params;
+      const token = jwt.sign({userEmail:user.email}, jwt_secret, { expiresIn: "1h" });
+      // console.log(token)
+      if (!jwt.verify(token, jwt_secret)) {
+          res.json({ ok: false, message: "something went wrong" })
+        } else {
+          try {
+              const result = await Users.findOne({email: user.email});
+              // console.log(`this is` + result);
+              if (result === null) {
+                  res.send({ ok: true, data: `User ${user.email} doesn't exist` });
+              } else {
+                  res.send({ok:true, data:result});
+              } 
+          }
+          catch(e){
+              res.send({e}) 
+          }
+        }      
+      }
+      
     // Create a new user
     // async insert (req, res) {
     //     let { user } = req.body;
@@ -134,6 +137,7 @@ async verify_token (req, res) {
     //         } else {res.send({e})}
     //     }
     // }
+
     // Delete that user  - admin or user itself 
     async delete (req, res){
         // console.log('delete!!!')

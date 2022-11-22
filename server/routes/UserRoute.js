@@ -8,8 +8,6 @@ router.get('/', controller.findAll);
 
 //  == This route will give us back one todo, it will be that with the id we are providing: ==  //
 
-router.get('/:user', controller.findOne);
-
 //  == This route allow us to add an extr todo: ==  //
 
 // router.post('/login', controller.insert);
@@ -24,6 +22,9 @@ router.post('/update', controller.update);
 
 router.post('/register', controller.register);
 router.post('/login', controller.login);
-router.post('/verify_token', controller.verify_token);
+router.post('/verify-token', controller.verify_token);
+
+router.get('/:user', controller.findOne);
+
 
 module.exports = router;

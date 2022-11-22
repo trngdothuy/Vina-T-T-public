@@ -9,8 +9,9 @@ import ContactUs from "./containers/ContactUs.js";
 import FactoryTour from "./containers/FactoryTour.js";
 import Products from "./containers/Products.js";
 import Tips from "./containers/Tips.js";
+import Internal from "./containers/Internal.js";
 import Navbar from "./components/Navbar.js";
-
+import "./App.css";
 import { URL } from "./config";
 
 function App() {
@@ -19,10 +20,12 @@ function App() {
 
   const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
 
+  const [admin, setAdmin] = useState(false)
+
   useEffect(
     () => {
       const verify_token = async () => {
-        debugger
+        // debugger
         try {
           if (!token) {
             setIsLoggedIn(false) // should be false
@@ -40,13 +43,16 @@ function App() {
     [token]
     );
 
-  const login = (token) => {
-    debugger
+  const login = (token,admin,email) => {
+    // debugger
     localStorage.setItem("token", JSON.stringify(token));
     setIsLoggedIn(true);
+    if (admin) {
+      setAdmin(true)
+    }
   };
   const logout = () => {
-    debugger
+    // debugger
     localStorage.removeItem("token");
     setIsLoggedIn(false);
   };
@@ -70,6 +76,10 @@ function App() {
     <Route
     path="/account"
     element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout}  /> } 
+    />
+    <Route
+    path="/internal"
+    element ={ !isLoggedIn || !admin ? <Navigate to='/' /> : <Internal logout={logout}  /> } 
     />
     </Routes>
     </Router>

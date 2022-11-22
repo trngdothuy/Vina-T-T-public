@@ -50,7 +50,8 @@ class CategoryController {
                     description: category.description, 
                     nutrients: category.nutrients, 
                     plantation: category.plantation, 
-                    manufacturer: category.manufacturer});
+                    manufacturer: category.manufacturer,
+                    photo: category.photo});
                 // console.log(`this is the result`)
                 // console.log(done)
                 res.send({ ok: true, data: `Category ${category.category} added successfully` })
@@ -99,7 +100,8 @@ class CategoryController {
                     description: new_category.description,
                     nutrients: new_category.nutrients,
                     manufacturer: new_category.manufacturer,
-                    plantation: new_category.plantation}}
+                    plantation: new_category.plantation,
+                    photo: category.photo}}
              );
             //  console.log(updated)
              if (updated.modifiedCount === 0) {

@@ -38,7 +38,7 @@ const Login = (props) => {
         // and now we now which user is logged in in the client so we can manipulate it as we want, like fetching data for it or we can pass the user role -- admin or not -- and act accordingly, etc...
         console.log("Email extracted from the JWT token after login: ", decodedToken.userEmail)
         setTimeout(() => {
-          props.login(response.data.token);
+          props.login(response.data.token,response.data.admin,response.data.email);
           navigate("/account");
         }, 2000);
       }

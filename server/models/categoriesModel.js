@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema({
   category: { type: String, required: true, unique: true },
-  price: { type: Number, required: true },
-  color: { type: String, required: true },
-  description: { type: String, required: true },
-  nutrients: {type: String,required: true},
-  manufacturer: { type: String, required: true },
-  plantation: { type: String, required: true },
+  price: { type: Number },
+  color: { type: String },
+  description: { type: String },
+  nutrients: {type: String},
+  manufacturer: { type: String },
+  plantation: { type: String},
+  photo: {type: String}
 });
 
-module.exports = mongoose.model("category", categorySchema);
+module.exports = mongoose.model("categories", categorySchema);
