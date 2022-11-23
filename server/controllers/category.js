@@ -51,7 +51,17 @@ class CategoryController {
                     nutrients: category.nutrients, 
                     plantation: category.plantation, 
                     manufacturer: category.manufacturer,
-                    photo: category.photo});
+                    photo: category.photo,
+                    testimonial1: category.testimonial1,
+                    testimonial2: category.testimonial2,
+                    testimonial3: category.testimonial3,
+                    testimonial_photo1: category.testimonial_photo1,
+                    testimonial_photo2: category.testimonial_photo2,
+                    testimonial_photo3: category.testimonial_photo3,
+                    testimonial_name1: category.testimonial_name1,
+                    testimonial_name2: category.testimonial_name2,
+                    testimonial_name3: category.testimonial_name3
+                });
                 // console.log(`this is the result`)
                 // console.log(done)
                 res.send({ ok: true, data: `Category ${category.category} added successfully` })
@@ -101,7 +111,17 @@ class CategoryController {
                     nutrients: new_category.nutrients,
                     manufacturer: new_category.manufacturer,
                     plantation: new_category.plantation,
-                    photo: category.photo}}
+                    photo: category.photo,
+                    testimonial1: category.testimonial1,
+                    testimonial2: category.testimonial2,
+                    testimonial3: category.testimonial3,
+                    testimonial_photo1: category.testimonial_photo1,
+                    testimonial_photo2: category.testimonial_photo2,
+                    testimonial_photo3: category.testimonial_photo3,
+                    testimonial_name1: category.testimonial_name1,
+                    testimonial_name2: category.testimonial_name2,
+                    testimonial_name3: category.testimonial_name3,
+                }}
              );
             //  console.log(updated)
              if (updated.modifiedCount === 0) {

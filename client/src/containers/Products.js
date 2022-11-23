@@ -1,53 +1,54 @@
 import React, {useState, useEffect}  from 'react';
 import axios from "axios";
 import { URL } from "../config";
+import SubProduct from './SubProduct'
 
 function Products () {
 
     const [category, setCategory] = useState([])
-    const [product, setProduct] = useState([])
-    const [singlecategory, setSinglecategory] = useState([])
-
-              console.log(singlecategory) 
-            //   console.log(product)  
+    const [product, setProduct] = useState(null)
+    const [singlecategory, setSinglecategory] = useState(null)
     const [fruit, setFruit] = useState('')
-    
-      const handleSubmit = (e) => {
-        e.preventDefault(); // prevent page from reloading onSubmit which is default behavior
-        // console.log(fruit)
-        // alert(fruit)
-        const findProduct = async product => {
-            try {
-              const res = await axios.get(`${URL}/product/:product_id`);
-            //   console.log(res)
-              setProduct(res.data.data)
-            //   console.log(res.data.data)
-            } catch (error) {
-              console.log(error);
-            }
-          }
-          findProduct(fruit);
 
-        function findSinglecategory () {
-            let index = category.findIndex((element) => element.category === product.category) 
-            setSinglecategory(category[index])
-        } 
-        findSinglecategory()
-      };
-    
-      const handleChange = (e) => {
-        // data is a string form the input
-        // setting the content of input to be the value of 'userInput' in state
-        setFruit(e.target.value);
-      };
+    // console.log('this is category');
+    // console.log()
+    // console.log( "this is single cate")
+    // console.log(singlecategory) 
+    // console.log("this is product")
+    // console.log(product)       
+        
+    const findProduct = async product => {
+        try {
+            const res = await axios.get(`${URL}/product/${product}`);
+        //  console.log(res)
+            setProduct(res.data.data)
+            let index = category.findIndex((element) => element.category === res.data.data.category) 
+        setSinglecategory(category[index])
+            // console.log(res.data.data)
+        } catch (error) {
+            console.log(error);
+        }
+        }
+
+    const handleSubmit = (e) => {
+    e.preventDefault(); 
+    findProduct(fruit);
+
+
+    };
+
+    const handleChange = (e) => {
+    setFruit(e.target.value);
+    // console.log("this is input" + fruit)
+    };
 
       useEffect(() => {
-        const findCategory = async category => {
+        const findCategory = async () => {
           try {
             const res = await axios.get(`${URL}/category/`);
-            console.log(res)
+            // console.log(res)
             setCategory(res.data.data)
-            console.log(res.data.data)
+            // console.log(res.data.data)
 
           } catch (error) {
             console.log(error);
@@ -58,7 +59,7 @@ function Products () {
 
 
 return (
-    <div class="top-textbox">
+    <div className="top-textbox">
         <h1>Products</h1>
         <h2>Only providing the <strong>highest-quality</strong> fruits.</h2>
 
@@ -78,20 +79,9 @@ return (
     <button>Search</button>
     </form>
 
-    <>
-    <p>Name: {product.category}</p>
-    <p>ID: {product.fruit_batch}</p>
-    <p>Farmer's name: {product.farmers_name}</p>
-    <p>Farmer's photo: {product.farmers_photo}</p>
-    <p>Harvest Date: {product.harvest_date}</p>
-    <p>Packaging Date: {product.packaging_date}</p>
-    <p>Video: {product.videos}</p>
-    <img className="img-grid" alt='productImage' src={singlecategory.photo} />
-    </>
-
+    {(singlecategory  && product)  && <SubProduct product={product} singlecategory={singlecategory}/>}
+  
     </div>
-
-
 );
 
 }

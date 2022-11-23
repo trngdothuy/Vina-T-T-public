@@ -13,10 +13,10 @@ class ProductsController {
     }
     // FIND ONE 
     async findOne(req ,res){
-        let {product_id} = req.params;
+        let {batch} = req.params;
         try{
-            const result = await Products.findOne({id: product_id});
-            // console.log(`this is` + result);
+            const result = await Products.findOne({fruit_batch: batch});
+            console.log(result);
             if (result === null) {
                 res.send({ ok: true, data: `Product ${product} doesn't exist` });
             } else {
