@@ -61,25 +61,25 @@ const SubProduct = ({singlecategory, product}) => {
                     <img className="img-testimonal" alt='productImage' src={singlecategory.testimonial_photo1} />
                 </div>
 
-            <div className="testti-card">
-                <img className="img-testimonal" alt='productImage' src={singlecategory.testimonial_photo2} />
-                <div className="text-card">
-                    <p className="testimonal-text">{singlecategory.testimonial2}</p>
-                    <p className="testimonal-text"><i>_{singlecategory.testimonial_name2}_</i></p>
+                <div className="testti-card">
+                    <img className="img-testimonal" alt='productImage' src={singlecategory.testimonial_photo2} />
+                    <div className="text-card">
+                        <p className="testimonal-text">{singlecategory.testimonial2}</p>
+                        <p className="testimonal-text"><i>_{singlecategory.testimonial_name2}_</i></p>
+                    </div>
                 </div>
-            </div>
 
-            <div className="testti-card">
-                <div className="text-card">
-                    <p className="testimonal-text">{singlecategory.testimonial3}</p>
-                    <p className="testimonal-text"><i>_{singlecategory.testimonial_name3}_</i></p>
+                <div className="testti-card">
+                    <div className="text-card">
+                        <p className="testimonal-text">{singlecategory.testimonial3}</p>
+                        <p className="testimonal-text"><i>_{singlecategory.testimonial_name3}_</i></p>
+                    </div>
+                    <img className="img-testimonal" alt='productImage' src={singlecategory.testimonial_photo3} />
                 </div>
-                <img className="img-testimonal" alt='productImage' src={singlecategory.testimonial_photo3} />
+                <button className="button-3columns" type= "button" onClick={()=>navigate('/contact-us')}>Contact Us</button>
             </div>
-            </div>
-            <button type= "button" onClick={()=>navigate('/contact-us')}>Contact Us</button>
         </div>
-
+       
          
     </div>
     }

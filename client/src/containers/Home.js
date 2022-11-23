@@ -12,8 +12,8 @@ return (
     <div className="home-block">
         <div class="bg-textbox">
             <h1>Vina T&T</h1>
-    <h2>We commit that the <i>quality</i>, <i>quantity</i>, <i>moisture</i> as well as <i>technical components</i> meet the demand on each exported order.</h2>
-    <button type= "button" onClick={()=>navigate('/factorytour')}>Let's see more</button>
+    <h5>We commit that the <i>quality</i>, <i>quantity</i>, <i>moisture</i> as well as <i>technical components</i> meet the demand on each exported order.</h5>
+    <button type= "button" onClick={()=>navigate('/products')}>See more</button>
         </div>
 
     

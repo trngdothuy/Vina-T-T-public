@@ -1,6 +1,18 @@
 import React from 'react';
 
-const Home = () => <>
+function Home () {
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+        };
+    
+        // const handleChange = (e) => {
+        // setFruit(e.target.value);
+        // console.log("this is input" + fruit)
+        // }
+
+return (
+    <>
 <h1>Contact Us Page</h1>
 <p>Do you have any questions? Don't hesitate to contact us!</p>
 
@@ -23,18 +35,26 @@ const Home = () => <>
 </div>
 
 <h2>Contact Us </h2>
-<form className="contact-form">
+<form onSubmit={handleSubmit} className="contact-form">
     <input type="text" className="contact-input" placeholder="First Name"/>
     <input type="text" className="contact-input" placeholder="Last Name"/>
     <input type="text" className="contact-input" placeholder="Email"/>
     <input type="text" className="contact-input" placeholder="Phone"/>
     <input type="text" className="contact-input1" placeholder="Address"/>
     <input type="text" className="contact-input2" placeholder="Type your message here.."/>
-    <button>Submit</button>
-    <p>Thanks for contacting us!</p>
+    <p className="contact-input1"><button>Submit</button></p>
+    
+    <p className="contact-input1">Thanks for contacting us!</p>
 </form>
 
 
-</>;
+</>
+
+)
+
+}
+
+
+
 
 export default Home;

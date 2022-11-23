@@ -61,7 +61,7 @@ function Products () {
 return (
     <div className="top-textbox">
         <h1>Products</h1>
-        <h2>Only providing the <strong>highest-quality</strong> fruits.</h2>
+        <h3>Only providing the <strong>highest-quality</strong> fruits.</h3>
 
 
     <div className="product-box">
@@ -75,7 +75,7 @@ return (
     </div>
     
     <form onSubmit={handleSubmit}>
-    <input onChange={handleChange} type="text" className="input-box" placeholder="Insert a number from 00 - 10"/>
+    <input onChange={handleChange} type="text" className="input-box" placeholder="Insert a number from 01 - 10"/>
     <button>Search</button>
     </form>
 

@@ -63,12 +63,16 @@
 }
 
 h2 {
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   color: #425F57;
 }
 
-h3, h1 {
+/* h3, h1 {
   color: #425F57;
+} */
+
+h1 {
+  color: #FECD70;
 }
 
 p {
@@ -76,10 +80,14 @@ p {
   font-size: 1rem;
 }
 
+.textbox {
+  color: #3D8361;
+}
+
 button {
   background-color: #3D8361;
   color: #FFAE6D;
-  width: 15em;
+  width: 8em;
 }
 
 .img-grid {
@@ -109,8 +117,8 @@ iframe {
   margin: 30px;
 }
 
-.testimonal-text {
-  color: #FFAE6D;
+.testti-card {
+  /* color: #FFAE6D; */
   /* color: #F7A4A4; */
 }
 
@@ -126,6 +134,11 @@ iframe {
   margin: 30px;
   align-items: center;
   place-items: center;
+  justify-content: center;
+}
+
+.button-3columns {
+  grid-column: 1 / 4;
 }
 
 .text-card {
@@ -137,7 +150,7 @@ iframe {
 
 .contact-input {
   height: 30px;
-  gap: 1em;
+  /* gap: 0.5em; */
 }
 
 .contact-input1 {
@@ -155,8 +168,9 @@ iframe {
   height: 500px; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1em;
+  gap: 0.5em;
   grid-template-columns: 250px 250px;
+  justify-content: center;
 }
 
 @media (max-width: 700px) {
