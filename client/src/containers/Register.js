@@ -19,8 +19,8 @@ const Register = (props) => {
 	};
 
 	const handleSubmit = async (e) => {
-		debugger
-		// e.preventDefault();
+		// debugger
+		e.preventDefault();
 		try {
 			const response = await axios.post(`${URL}/users/register`, {
 				email: form.email,
@@ -29,7 +29,7 @@ const Register = (props) => {
                 name: form.name,
 			});
 			setMessage(response.data.message);
-			//console.log(response)
+			console.log(response)
 			if (response.data.ok) {
 				setTimeout(() => {
 					navigate('/login');
@@ -41,24 +41,27 @@ const Register = (props) => {
 	};
 
 	return (
+		<>
+		<h1>Sign Up</h1>
+		
 		<form onSubmit={handleSubmit} onChange={handleChange} className="form_container">
 			<label>Email</label>
-			<input name="email" />
+			<input type="email" name="email" placeholder="Your email"/>
 
 			<label>Password</label>
-			<input name="password" />
+			<input type ="password" name="password" placeholder="Your password"/>
 
 			<label>Repeat password</label>
-			<input name="password2" />
+			<input type ="password" name="password2" placeholder="Repeat your password" />
 
             <label>Name</label>
-			<input name="name" />
-
-			<button>register</button>
+			<input name="name" placeholder="Your name"/>
+			<><button className="spec-button">Sign Up</button></>
+			
 			<div className="message">
 				<h4>{message}</h4>
 			</div>
-		</form>
+		</form> </>
 	);
 };
 

@@ -76,7 +76,7 @@ const SubProduct = ({singlecategory, product}) => {
                     </div>
                     <img className="img-testimonal" alt='productImage' src={singlecategory.testimonial_photo3} />
                 </div>
-                <button className="button-3columns" type= "button" onClick={()=>navigate('/contact-us')}>Contact Us</button>
+                <button className="button-3columns" type= "button" onClick={()=>navigate('/tips')}>More tips?</button>
             </div>
         </div>
        

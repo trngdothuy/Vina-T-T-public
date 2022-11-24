@@ -23,7 +23,7 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    debugger
+    // debugger
     e.preventDefault();
     try {
       const response = await axios.post(`${URL}/users/login`, {
@@ -47,20 +47,24 @@ const Login = (props) => {
     }
   };
   return (
+    <>
+    <h1>Login</h1>
+    
     <form
     onSubmit={handleSubmit}
     onChange={handleChange}
     className="form_container"
     >
     <label>Email</label>
-    <input name="email" />
+    <input type="email" name="email" placeholder="Your email"/>
     <label>Password</label>
-    <input name="password" />
-    <button>login</button>
+    <input type ="password" name="password" placeholder="Your password" />
+    <button className="spec-button">Login</button>
     <div className="message">
     <h4>{message}</h4>
     </div>
     </form>
+    </>
     );
 };
 
