@@ -15,7 +15,7 @@ function Products ({cart, setCart}) {
     // const [order, setOrder] = useState(0)
 
     // const [cart,setCart] = useState({})
-    console.log('this is cart at first')
+    console.log('this is cart from the 1st line')
     console.log(cart) 
     // console.log('this is order')
     // console.log(order)
