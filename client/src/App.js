@@ -13,6 +13,7 @@ import Internal from "./containers/Internal.js";
 import Navbar from "./components/Navbar.js";
 import "./App.css";
 import { URL } from "./config";
+import {useLocation, useNavigate} from 'react-router-dom';
 
 function App() {
 
@@ -21,6 +22,10 @@ function App() {
   const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
 
   const [admin, setAdmin] = useState(false)
+  const [cart, setCart] = useState()
+
+  // const location = useLocation();
+  // console.log(location.state)
 
   useEffect(
     () => {
@@ -61,7 +66,8 @@ function App() {
     <Navbar isLoggedIn={isLoggedIn}/>
     <Routes>
     <Route path="/" element={<Home/>} />
-    <Route path="/products" element={<Products/>} />
+    <Route path="/products" 
+    element={<Products cart={cart} setCart={setCart} />} />
     <Route path="/factorytour" element={<FactoryTour/>} />
     <Route path="/tips" element={<Tips/>} />
     <Route path="/contact-us" element={<ContactUs/>} />
@@ -75,7 +81,8 @@ function App() {
     />
     <Route
     path="/account"
-    element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout}  /> } 
+    element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout}  
+    cart={cart} setCart={setCart} /> } 
     />
     <Route
     path="/internal"

@@ -56,11 +56,15 @@ const Register = (props) => {
 
             <label>Name</label>
 			<input name="name" placeholder="Your name"/>
-			<><button className="spec-button">Sign Up</button></>
-			
+
 			<div className="message">
 				<h4>{message}</h4>
 			</div>
+
+			
+			<><button className="spec-button">Sign Up</button></>
+			
+			
 		</form> </>
 	);
 };

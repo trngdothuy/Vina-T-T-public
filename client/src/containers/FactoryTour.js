@@ -15,10 +15,14 @@ const Factorytour = () => {
         {name: "Packaging Process", photo: "https://www.goodfruit.com/wp-content/uploads/giftInsideAmazon-16908tj-1.jpg"},
         {name: "Exhibition Room", photo: "https://c8.alamy.com/comp/2H5378Y/shanghai-6th-nov-2021-fruits-are-on-display-at-the-food-and-agricultural-products-exhibition-area-of-the-4th-china-international-import-expo-ciie-in-east-chinas-shanghai-nov-6-2021-various-foods-from-around-the-world-are-showcased-during-the-4th-ciie-in-shanghai-credit-hao-zhaoxinhuaalamy-live-news-2H5378Y.jpg"},
         {name: "Test Lab", photo: "http://cen.acs.org/content/dam/cen/100/1/WEB/10001-feature2-lab.jpg"},
-        {name: "Process Management", photo: "https://www.foodengineeringmag.com/ext/resources/Issues/2020/01-January/Food-safety.jpg?1578694863"},
+        {name: "Process Management", photo: "https://www.sesotec.com/sites/593fc2aac25e5b0640a20ff8/content_entry597af0bdc25e5b2f8c19e26a/636a2f2693b3569930c556d3/files/topas-unternehmensfilm.jpg?1667904533"},
     ],
     cert = [
-        {}
+        {photo: "https://vinatt.com/en/wp-content/uploads/2020/08/GLOBALGAP-LOGO-226x135.jpg"},
+        {photo: "https://vinatt.com/en/wp-content/uploads/2020/08/ISO-9001-2015-LOGO-226x135.jpg"},
+        {photo: "https://vinatt.com/en/wp-content/uploads/2020/08/HAACP-LOGO-226x135.jpg"},
+        {photo: "https://vinatt.com/en/wp-content/uploads/2020/08/VINAFRUIT-LOGO-226x135.jpg"},
+        {photo: "https://vinatt.com/en/wp-content/uploads/2020/08/CAPAVN-LOGO-226x135.jpg"},
     ];
 
 
@@ -66,14 +70,16 @@ return (
           <p>{ele.name}</p> 
        </div>) })}
     </div>
+
     <h1>Our Quality Certifications</h1>
     <h3>All of our fruits must meet the international standards</h3>
-    <img alt='productImage' src="https://vinatt.com/en/wp-content/uploads/2020/08/GLOBALGAP-LOGO-226x135.jpg"/>
-    <img alt='productImage' src="https://vinatt.com/en/wp-content/uploads/2020/08/ISO-9001-2015-LOGO-226x135.jpg"/>
-    <img alt='productImage' src="https://vinatt.com/en/wp-content/uploads/2020/08/HAACP-LOGO-226x135.jpg"/>
-    <img alt='productImage' src="https://vinatt.com/en/wp-content/uploads/2020/08/VINAFRUIT-LOGO-226x135.jpg"/>
-    <img alt='productImage' src="https://vinatt.com/en/wp-content/uploads/2020/08/CAPAVN-LOGO-226x135.jpg"/>
-
+    <div className="factory-section">
+    {
+     cert.map((ele, i) => {
+      return (
+      <div key={i}>
+          <img alt='productImage' src={ele.photo} />
+       </div>) })} </div>
 
     <button type= "button" className="spec-button" onClick={()=>navigate('/products')}>See more</button>
 </>
