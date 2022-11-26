@@ -68,11 +68,11 @@ const Navbar = ({isLoggedIn,admin}) => {
 
     {isLoggedIn===true &&
       <NavLink  
-      to="/account"
+      to="/cart"
       style={ ({isActive}) => (
         isActive ? linkStyles.activeLink : linkStyles.defaultLink
         )}>
-      Account
+      Cart
       </NavLink>
         }
 

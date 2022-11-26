@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom'
 import React, {useState, useEffect} from "react";
 
-const Account = (cart, setCart, logout) => {
+const Cart = (cart, setCart, logout) => {
 	let navigate = useNavigate()
 	const [total, setTotal] = useState(0)
 
@@ -10,39 +10,39 @@ const Account = (cart, setCart, logout) => {
 	
 	
 	const handleClickMinus = (index, product) => {
-		let temp = [...cart]
+		console.log(index)
+		let temp = [...cart.cart]
+		console.log(temp)
 		temp[index].quantity -= 1
 		temp[index].quantity === -1 && temp.splice(index, 1)
 		// console.log(temp)
 		setCart(temp)
-	   
 		// console.log(categories)
 		}
 	
-	  const handleClickAdd = (i) => {
-		let temp = [...cart]
+	const handleClickAdd = (i) => {
+		let temp = [...cart.cart]
 		temp[i].quantity += 1
 		// console.log(temp)
 		setCart(temp)
 		}
 
-		function changeArray () {
-			setCart(Object.entries(cart)) // bug - how can I change from object to array?
-			console.log('cart to array')
-			console.log(cart)
-				}
 	
 	useEffect(()=>{
-		debugger
-	changeArray()
-	let prices = cart.map(e=>e.price*e.quantity)
-	setTotal(prices.reduce((a,b)=>a+b))
-	},[setCart, cart])
+	// debugger
+	let cart2 = [...cart.cart]
+	let prices = cart2.map(e=>e.price*e.quantity)
+	if (prices.length !== 0) {
+		setTotal(prices.reduce((a,b)=>a+b))
+	} else {
+		setTotal(0)
+	}	
+	},[(cart.cart)])
 	
 
 	return (
 		<div className="secret_page">
-			<h1>This is the Account page</h1>
+			<h1>Cart</h1>
 			<h2>You can access here only after verify the token</h2>
 			<button
 				onClick={() => {
@@ -59,10 +59,10 @@ const Account = (cart, setCart, logout) => {
         <p style={{color:"red"}}>Shipping will be charged</p>}
 
 		<div className="wrapper">
-				{(cart.isArray) && cart.map( (item, i) => {
+				{cart.cart && cart.cart.map( (item, i) => {
 					return (
 						<div key={i} className="card">
-							<img alt='productImage' src={item.image} />
+							<img alt='productImage' className="img-grid" src={item.photo} />
 							<p>{item.name}</p> 
 							<p>${item.price}</p> 
 							<div>
@@ -80,4 +80,4 @@ const Account = (cart, setCart, logout) => {
 	);
 };
 
-export default Account;
+export default Cart;
