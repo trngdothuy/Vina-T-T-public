@@ -5,7 +5,10 @@ const categorySchema = new mongoose.Schema({
   price: { type: Number },
   color: { type: String },
   description: { type: String },
-  nutrients: {type: Array},
+  nutrients: [
+    {key: {type: String}, 
+    value:{type: String}}
+  ],
   manufacturer: { type: String },
   plantation: { type: String},
   photo: {type: String},

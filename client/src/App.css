@@ -119,20 +119,26 @@ p {
   color: #3D8361;
 }
 
-button {
+.big-button {
   background-color: #3D8361;
   color: #FFAE6D;
-  width: 8em;
-  
 }
 
 .spec-button {
   margin: 2% 33%;
+  background-color: #3D8361;
+  color: #FFAE6D;
+}
+
+.spec-button:disabled {
+  background-color: #b7d5c6;
+  color: gray;
 }
 
 .img-grid {
   width: 150px;
   height: 150px;
+  border-radius: 30px;
 }
 
 .display-section {
@@ -179,6 +185,8 @@ iframe {
 
 .button-3columns {
   grid-column: 1 / 4;
+  background-color: #3D8361;
+  color: #FFAE6D;
 }
 
 .text-card {
@@ -220,9 +228,11 @@ iframe {
   gap: 0.5em;
   grid-template-columns: 250px 250px;
   justify-content: center;
-  width: 70%;
-  padding: 2% 0;
-  margin: 0 15%
+  width: 50%;
+  padding: 2%;
+  margin: 0 23% 5%;
+  background-color: #ebf8ea;
+  border-radius: 30px;
 }
 
 .factory-section {
@@ -276,7 +286,14 @@ iframe {
   flex-direction: column;
   }
 
-  .card {
+.checkbox-wrapper {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.card {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -285,6 +302,15 @@ iframe {
     padding: 20px;
   }
   
+
+.table {
+  width: 30vp;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  margin: 0 30%;
+  border-style: double;
+}
 
 @media (max-width: 950px) {
   .phototextbox {

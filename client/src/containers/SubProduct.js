@@ -5,7 +5,7 @@ const SubProduct = ({singlecategory, product}) => {
 
     const navigate = useNavigate()
     console.log(singlecategory)
-    console.log(product)
+    // console.log(product)
     // console.log(props)
     // you can see that props is an object
     // and we can use destructuring 
@@ -37,15 +37,10 @@ const SubProduct = ({singlecategory, product}) => {
     
         <div className="normaltextbox">
             <h3>Nutrient Table</h3>
-            {singlecategory.length < 0 && singlecategory.nutrients.map((cate, i) => {
-                console.log(cate)
-                    let parsed = JSON.parse(cate)
-                    console.log(parsed)
-                return (
-                    <div key={i} className="product">
-                        <img className="img-grid" alt='productImage' src={cate.photo} />
-                        <p>{cate.category}</p> 
-                    </div>) })
+            {singlecategory && singlecategory.nutrients.map((cate, i) => <div key={i} className="table">
+                        <p>{cate.key}:</p> 
+                        <p>{cate.value}</p> 
+                    </div> )
             }
         </div>
         

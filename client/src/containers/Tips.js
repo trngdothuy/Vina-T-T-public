@@ -34,12 +34,12 @@ const Tips = () => {
             <div className="intouch-card">
             <h2>Keep in touch to receive more tips from us!</h2>
             <input type="email" className="intouch-input" placeholder="Email"/>
-            <button type="button">Submit</button>
+            <button className="big-button" type="button">Submit</button>
             </div>
         
             <div className="intouch-card">
             <h2>Or if you are still in doubt?</h2>
-            <button type="button" onClick={()=>navigate('/contact-us')}>Contact Us</button>
+            <button className="big-button" type="button" onClick={()=>navigate('/contact-us')}>Contact Us</button>
             </div>
         </div>
         </>

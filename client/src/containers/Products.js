@@ -83,7 +83,7 @@ function Products ({cart, setCart, findProduct, setCategory, category, singlecat
         // e.preventDefault();
         // setCart({...cart, (e.target.name): e.target.value, price: e.target.id})
         // setCart({})
-        setOrder({name: (e.target.className), quantity: (e.target.value), price: (e.target.name), photo: (e.target.id)})
+        setOrder({name: (e.target.className), quantity: Number(e.target.value), price: Number(e.target.name), photo: (e.target.id)})
         console.log('this is order') 
         console.log(order)
         console.log(e) 
@@ -115,14 +115,14 @@ return (
                     <option value="5">5</option>
                 </select></p>
                 
-                <button onClick={()=>handleClickCart(cate.category, cate.value, cate.price, cate.photo)}>Add to cart</button>
+                <button className="big-button" onClick={()=>handleClickCart(cate.category, cate.value, cate.price, cate.photo)}>Add to cart</button>
             </div>
        </div>) })}
     </div>
     
     <form onSubmit={handleSubmit}>
     <input onChange={handleChange} type="text" className="input-box" placeholder="Insert a number from 01 - 10"/>
-    <button>Search</button>
+    <button className="big-button">Search</button>
     </form>
 
     {(singlecategory  && product)  && <SubProduct product={product} singlecategory={singlecategory}/>}

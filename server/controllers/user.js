@@ -74,7 +74,7 @@ async register (req, res) {
       // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 142
       const token = jwt.sign({userEmail:user.email,admin:user.admin}, jwt_secret, { expiresIn: "1h" }); //{expiresIn:'365d'}
       // after we send the payload to the client you can see how to get it in the client's Login component inside handleSubmit function
-      res.json({ ok: true, message: "welcome back", token, email, admin:user.admin });
+      res.json({ ok: true, message: "Welcome back!", token, email, admin:user.admin });
     } else return res.json({ ok: false, message: "invalid data provided" });
   } catch (error) {
     console.log(error)

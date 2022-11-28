@@ -23,7 +23,7 @@ function App() {
   const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
 
   const [admin, setAdmin] = useState(false)
-  const [cart, setCart] = useStateWithCallback([], cart => {console.log(cart);});
+  const [cart, setCart] = useStateWithCallback(JSON.parse(localStorage.getItem("cart")) || [], cart => {console.log(cart);});
 
   const [category, setCategory] = useState([])
   const [product, setProduct] = useState(null)

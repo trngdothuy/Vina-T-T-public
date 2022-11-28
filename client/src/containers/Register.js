@@ -11,6 +11,8 @@ const Register = (props) => {
         name: '',
 	});
 	const [ message, setMessage ] = useState('');
+	let buttonDisable = true
+	const [checkboxActive, setCheckboxActive] = useState(false)
 
 	const navigate=useNavigate()
 
@@ -40,6 +42,14 @@ const Register = (props) => {
 		}
 	};
 
+	if (form.email.length > 0 && form.password.length > 0 && form.password2.length > 0 && form.name.length > 0 && checkboxActive === true) {
+		buttonDisable = false
+	}
+
+	function handleChangeCheckbox(e) {
+		e.target.checked ? setCheckboxActive(true) : setCheckboxActive(false)
+	}
+
 	return (
 		<>
 		<h1>Sign Up</h1>
@@ -54,15 +64,19 @@ const Register = (props) => {
 			<label>Repeat password</label>
 			<input type ="password" name="password2" placeholder="Repeat your password" />
 
+			{form.password !== form.password2 && <p className="message">*Your password must match</p>}
+
             <label>Name</label>
 			<input name="name" placeholder="Your name"/>
+
+			<div className="checkbox-wrapper"><input type="checkbox" onChange={handleChangeCheckbox} required /> <span>I agree all terms and conditions</span></div>
+			
 
 			<div className="message">
 				<h4>{message}</h4>
 			</div>
 
-			
-			<><button className="spec-button">Sign Up</button></>
+			<><button className="spec-button" disabled={buttonDisable}>Sign Up</button></>
 			
 			
 		</form> </>

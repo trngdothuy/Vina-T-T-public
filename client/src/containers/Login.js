@@ -39,7 +39,7 @@ const Login = (props) => {
         console.log("Email extracted from the JWT token after login: ", decodedToken.userEmail)
         setTimeout(() => {
           props.login(response.data.token,response.data.admin,response.data.email);
-          navigate("/account");
+          navigate("/cart");
         }, 2000);
       }
     } catch (error) {
