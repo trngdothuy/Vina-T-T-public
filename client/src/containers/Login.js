@@ -63,6 +63,7 @@ const Login = (props) => {
     <div className="message">
     <h4>{message}</h4>
     </div>
+    <a href = "./register">Don't have an account?</a>
     </form>
     </>
     );

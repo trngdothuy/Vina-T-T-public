@@ -67,15 +67,18 @@ function Products ({cart, setCart, findProduct, setCategory, category, singlecat
             let index = cart2.findIndex(ele => ele.name === order.name) 
             cart2[index] = order           
             setCart(cart2)
+            localStorage.setItem("cart", JSON.stringify(cart2));
+            console.log(localStorage)
         } else {
             setCart([...cart, order])
+            localStorage.setItem("cart", JSON.stringify([...cart, order]));
+            console.log(localStorage)
         }
         // console.log('this is order after click') 
         // console.log(cart);
         // edit state 
         // the cart 
-        localStorage.setItem("cart", JSON.stringify(cart));
-        console.log(localStorage)
+        
     };
     
     const handleChangeCart = (e) => {
@@ -115,13 +118,13 @@ return (
                     <option value="5">5</option>
                 </select></p>
                 
-                <button className="big-button" onClick={()=>handleClickCart(cate.category, cate.value, cate.price, cate.photo)}>Add to cart</button>
+                <button className="big-button" onClick={()=>handleClickCart(cate.category, cate.value, cate.price, cate.photo)}>Set quantity in cart</button>
             </div>
        </div>) })}
     </div>
     
     <form onSubmit={handleSubmit}>
-    <input onChange={handleChange} type="text" className="input-box" placeholder="Insert a number from 01 - 10"/>
+    <input onChange={handleChange} type="text" className="input-box" placeholder="Insert the fruit batch from 01 - 10"/>
     <button className="big-button">Search</button>
     </form>
 

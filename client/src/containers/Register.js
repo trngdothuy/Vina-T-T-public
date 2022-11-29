@@ -42,7 +42,7 @@ const Register = (props) => {
 		}
 	};
 
-	if (form.email.length > 0 && form.password.length > 0 && form.password2.length > 0 && form.name.length > 0 && checkboxActive === true) {
+	if (form.email.length > 0 && form.password.length > 8 && form.password2.length > 8 && form.name.length > 0 && checkboxActive === true) {
 		buttonDisable = false
 	}
 
@@ -60,6 +60,8 @@ const Register = (props) => {
 
 			<label>Password</label>
 			<input type ="password" name="password" placeholder="Your password"/>
+
+			{(form.password.length < 8 && form.password2.length < 8) && <p className="message">*Your password should be at least 8 characters</p>}
 
 			<label>Repeat password</label>
 			<input type ="password" name="password2" placeholder="Repeat your password" />

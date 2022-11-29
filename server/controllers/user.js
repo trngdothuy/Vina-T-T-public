@@ -35,11 +35,11 @@ async register (req, res) {
     return res.json({ ok: false, message: "Passwords must match" });
   }
   if (!validator.isEmail(email)){
-    return res.json({ ok: false, message: "Invalid credentials" });
+    return res.json({ ok: false, message: "Please enter a valid email" });
   }
   try {
     const user = await Users.findOne({ email });
-    if (user) return res.json({ ok: false, message: "Invalid credentials" });
+    if (user) return res.json({ ok: false, message: "Email already registered" });
     const hash = await argon2.hash(password); 
     console.log("hash ==>", hash);
     const newUser = {
@@ -64,11 +64,11 @@ async register (req, res) {
     return res.json({ ok: false, message: "All field are required" });
   }
   if (!validator.isEmail(email)){
-    return res.json({ ok: false, message: "invalid data provided" });
+    return res.json({ ok: false, message: "Please enter a valid email" });
   }
   try {
     const user = await Users.findOne({ email });
-    if (!user) return res.json({ ok: false, message: "invalid data provided" });
+    if (!user) return res.json({ ok: false, message: "You haven't registered yet. Please sign up!" });
     const match = await argon2.verify(user.password, password);
     if (match) {
       // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 142

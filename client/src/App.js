@@ -11,6 +11,7 @@ import Products from "./containers/Products.js";
 import Tips from "./containers/Tips.js";
 import Internal from "./containers/Internal.js";
 import Navbar from "./components/Navbar.js";
+import Account from "./containers/Account.js";
 import "./App.css";
 import { URL } from "./config";
 // import {useLocation, useNavigate} from 'react-router-dom';
@@ -80,7 +81,7 @@ function App() {
     }
   return (
     <Router>
-    <Navbar isLoggedIn={isLoggedIn}/>
+    <Navbar isLoggedIn={isLoggedIn} cart={cart}/>
     <Routes>
     <Route path="/" element={<Home/>} />
     <Route path="/products" 
@@ -98,8 +99,11 @@ function App() {
     />
     <Route
     path="/cart"
-    element ={ !isLoggedIn ? <Navigate to='/' /> : <Cart logout={logout}  
-    cart={cart} setCart={setCart} singlecategory={singlecategory}  /> } 
+    element ={<Cart cart={cart} setCart={setCart} singlecategory={singlecategory} /> } 
+    />
+    <Route
+    path="/account"
+    element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout} /> } 
     />
     <Route
     path="/internal"

@@ -1,5 +1,9 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom'
+// import CarouselSlider from "./CarouselSlider";
+import ReactDOM from 'react-dom';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const Factorytour = () => {
     let navigate = useNavigate()
@@ -30,36 +34,52 @@ const Factorytour = () => {
 
 return (
     <>
-    <div className="factory-block"></div>
-        <div class="bg-textbox">
-        <h1>Factory Tour</h1>
-        <h3>Welcome to our virtual factory tour!</h3>
-    </div>
+
     <div className="factory-section">
-        <div className="factory-textbox">
-            <h5>Vina T&T Factory Tour</h5>
-            <h2>Let's travel to Mekong Delta and visit our factory</h2>
-            <h6>The quality of our products is not only the result of state-of-the-art technology. It is a result, above all, of the passion of a team of professionals who ensure every last detail has been covered, resulting in an excellent product. Come and see for yourself at our factory.</h6>
-        </div>
-            <img alt='factory' className="factory-banner" src='https://vietnamtimes.org.vn/stores/news_dataimages/dieuhuongvnt/032021/25/07/4420_1.png?rt=20210325075039'/>
-    </div>
-    <div className="factory-section">
-        
-            <img alt='farmer' className="factory-banner" src='https://www-file.huawei.com/-/media/corp2020/images/tech4all/cases1/1/guangxi-fttr-video-cv.jpg'/>
-     
-        <div className="factory-textbox">
-            <h5>Virtual Factory Tour</h5>
-            <h2>The heart of Vina T&T</h2>
-            <h6>We want to show you the true value of our products, by unveiling 
-             the production process of a fruit, and revealing life inside the factory and farms.</h6>
-        </div>
-    </div>
-    <div className="factory-section">
-        <img alt='farmer' className="factory-long-banner" src='https://vietnamtimes.org.vn/stores/news_dataimages/khanhduongvnt/052021/27/09/thumbnail/1817_vai_thieu_luc_ngan_8_1-2104.png?rt=20210527091818'/>
+        <Carousel autoPlay="true" dynamicHeight="true" infiniteLoop="true" showThumbs={false} useKeyboardArrows="true" >
+            <div>
+                <img alt='banner' className="factory-banner" src='https://vinatt.com/en/wp-content/uploads/2019/05/Banner-Fruits-TT-size-giam-kich-thuoc-1400x788.jpg'/>
+                <div class="bg-textbox">
+                <h2>Factory Tour</h2>
+                <h3>Welcome to our virtual factory tour!</h3>
+                </div>
+            </div>
+
+            <div>
+                <img alt='farmer' className="factory-banner" src='https://www-file.huawei.com/-/media/corp2020/images/tech4all/cases1/1/guangxi-fttr-video-cv.jpg'/>
+                <div className="factory-textbox">
+                    <h5>Vina T&T Factory Tour</h5>
+                    <h2>Let's travel to Mekong Delta and visit our factory</h2>
+                    <h6>The quality of our products is not only the result of state-of-the-art technology. It is a result, above all, of the passion of a team of professionals who ensure every last detail has been covered, resulting in an excellent product.</h6>
+                </div>
+            </div>
+
+            <div>
+                <img alt='farmer' className="factory-banner" src='https://image.made-in-china.com/2f0j00RqTzceNMhakv/Automatic-Dragon-Fruit-Juice-Paste-Processing-Line-Production-Machine.jpg'/>
+                <div className="factory-textbox">
+                    <h5>Virtual Factory Tour</h5>
+                    <h2>The heart of Vina T&T</h2>
+                    <h6>We want to show you the true value of our products, by unveiling 
+                    the production process of a fruit, and revealing life inside the factory and farms.</h6>
+                </div>
+            </div>
+
+            <div className="factory-section">
+                <img alt='farmer' className="factory-banner" src='https://vietnamtimes.org.vn/stores/news_dataimages/khanhduongvnt/052021/27/09/thumbnail/1817_vai_thieu_luc_ngan_8_1-2104.png?rt=20210527091818'/>
+                <div className="factory-textbox">
+                    <h2>We believe that</h2>
+                    <h5>“The best way to compete and develop is to ensure the benefits of customers”</h5>
+                    <h6>Come and see for yourself at our virtual factory tour.</h6>
+                </div>
+            </div>
+        </Carousel>
     </div>
 
+
+
+    <div className="factory">
     <h1>Our Factory and Farm</h1>
-    <h3>The health and safety of our employees, customers and partners remain our number one priority</h3>
+    <h3>The health and safety of our employees, customers and partners remain our number one priority</h3> 
 
     <div className="product-box">
     {
@@ -82,9 +102,11 @@ return (
        </div>) })} </div>
 
     <button type= "button" className="spec-button" onClick={()=>navigate('/products')}>See more</button>
+    </div>
 </>
 )
 }
 
+// ReactDOM.render(<Factorytour />, document.querySelector('.demo-carousel'));
 
 export default Factorytour;

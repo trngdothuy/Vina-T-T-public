@@ -44,14 +44,14 @@ const Cart = ({cart, setCart, logout}) => {
 		<div className="secret_page">
 			<h1>Cart</h1>
 			{/* <h2>You can access here only after verify the token</h2> */}
-			<button className="big-button"
+			{/* <button className="big-button"
 				onClick={() => {
 					logout();
 					navigate('/')
 				}}
 			>
 				logout
-			</button>
+			</button> */}
 			<span><h2>Total: ${total}</h2></span>
 
 			{total > 500 ? 

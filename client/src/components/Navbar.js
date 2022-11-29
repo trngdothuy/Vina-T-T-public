@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({isLoggedIn,admin}) => {
+const Navbar = ({isLoggedIn,admin, cart}) => {
 
   return (
     <div className="navbar">
@@ -26,7 +26,7 @@ const Navbar = ({isLoggedIn,admin}) => {
       style={ ({isActive}) => (
         isActive ? linkStyles.activeLink : linkStyles.defaultLink
         )}>
-      Factory Tour
+      Factory&#160;Tour
       </NavLink>
 
       <NavLink
@@ -66,13 +66,23 @@ const Navbar = ({isLoggedIn,admin}) => {
       </>
     }
 
-    {isLoggedIn===true &&
-      <NavLink  
+
+    <NavLink
       to="/cart"
       style={ ({isActive}) => (
         isActive ? linkStyles.activeLink : linkStyles.defaultLink
         )}>
-      Cart
+      Cart&#160;{cart.length}
+      </NavLink>
+
+
+    {isLoggedIn===true &&
+      <NavLink  
+      to="/account"
+      style={ ({isActive}) => (
+        isActive ? linkStyles.activeLink : linkStyles.defaultLink
+        )}>
+      Account
       </NavLink>
         }
 
