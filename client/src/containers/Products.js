@@ -11,9 +11,10 @@ function Products ({cart, setCart, findProduct, setCategory, category, singlecat
     // const [category, setCategory] = useState([])
     // const [product, setProduct] = useState(null)
     // const [singlecategory, setSinglecategory] = useState(null)
-    const [fruit, setFruit] = useState('')
+    const [input, setInput] = useState('')
      //const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
     const [order, setOrder] = useState(0)
+    const [inputIsNumber, setInputIsNumber] = useState(false)
 
     // const [cart,setCart] = useState({})
     // console.log('this is cart from the 1st line')
@@ -32,12 +33,17 @@ function Products ({cart, setCart, findProduct, setCategory, category, singlecat
 
     const handleSubmit = (e) => {
     e.preventDefault(); 
-    findProduct(fruit);
+    findProduct(input);
     };
 
     const handleChange = (e) => {
-    setFruit(e.target.value);
+        // debugger
+    setInput(e.target.value);
     // console.log("this is input" + fruit)
+    let input2 = Number(e.target.value)
+    console.log(typeof input2)
+    !isNaN(input2) ? setInputIsNumber(true) : setInputIsNumber(false) 
+    console.log(inputIsNumber)
     };
 
     useEffect(() => {
@@ -47,7 +53,6 @@ function Products ({cart, setCart, findProduct, setCategory, category, singlecat
         // console.log(res)
         setCategory(res.data.data)
         // console.log(res.data.data)
-
         } catch (error) {
         console.log(error);
         }
@@ -124,11 +129,11 @@ return (
     </div>
     
     <form onSubmit={handleSubmit}>
-    <input onChange={handleChange} type="text" className="input-box" placeholder="Insert the fruit batch from 01 - 10"/>
+    <input onChange={handleChange} type="text" className="input-box" placeholder="Insert name or fruit batch from 01 - 10"/>
     <button className="big-button">Search</button>
     </form>
 
-    {(singlecategory  && product)  && <SubProduct product={product} singlecategory={singlecategory}/>}
+    {(singlecategory  && product)  && <SubProduct product={product} singlecategory={singlecategory} inputIsNumber={inputIsNumber}/>}
   
     </div>
 );

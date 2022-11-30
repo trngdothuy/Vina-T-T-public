@@ -1,7 +1,7 @@
 import React from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 
-const SubProduct = ({singlecategory, product}) => {
+const SubProduct = ({singlecategory, product, inputIsNumber}) => {
 
     const navigate = useNavigate()
     console.log(singlecategory)
@@ -25,18 +25,22 @@ const SubProduct = ({singlecategory, product}) => {
                 </div>
         </div>
     
+        {(inputIsNumber) &&
         <div className="phototextbox"> 
-            <div className="textbox">
-                <p><strong>Fruit Batch</strong>: {product.fruit_batch}</p>
-                <p><strong>Farmer's Name</strong>: {product.farmers_name}</p>
-                <p><strong>Harvest Date</strong>: {product.harvest_date}</p>
-                <p><strong>Packaging Date</strong>: {product.packaging_date}</p>
-            </div>
-                <img className="img-textbox" alt='productImage' src={product.farmers_photo} />
-        </div>
+                    <div className="textbox">
+                        <p><strong>Fruit Batch</strong>: {product.fruit_batch}</p>
+                        <p><strong>Farmer's Name</strong>: {product.farmers_name}</p>
+                        <p><strong>Harvest Date</strong>: {product.harvest_date}</p>
+                        <p><strong>Packaging Date</strong>: {product.packaging_date}</p>
+                    </div>
+                        <img className="img-textbox" alt='productImage' src={product.farmers_photo} />
+                </div>
+        }
+        
     
         <div className="normaltextbox">
             <h3>Nutrient Table</h3>
+            <p><i>per 100g(3.5oz)</i></p>
             {singlecategory && singlecategory.nutrients.map((cate, i) => <div key={i} className="table">
                         <p>{cate.key}:</p> 
                         <p>{cate.value}</p> 

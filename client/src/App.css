@@ -125,6 +125,7 @@ carousel >thumbs-wrapper axis-vertical {
 
 h1 {
   color: #FECD70;
+  text-shadow: 2px 2px 5px #f6e2a9;
 }
 
 p {
@@ -160,6 +161,7 @@ p {
   object-fit: cover;
 }
 
+
 .display-section {
   display: grid;
 }
@@ -186,21 +188,22 @@ iframe {
 .testti-card {
   /* color: #FFAE6D; */
   /* color: #F7A4A4; */
+
 }
 
 .img-testimonal {
-  width: 80%;
-  height: 230px;
+  width: 50%;
+  /* height: 230px; */
   object-fit: cover;
   border-radius: 10px;
 }
 
 .column3-box {
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr; */
-  display: flex;
-  flex-wrap: wrap;
-  margin: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* display: flex;
+  flex-wrap: wrap; */
+  /* margin: 30px; */
   align-items: center;
   place-items: center;
   justify-content: center;
@@ -208,6 +211,7 @@ iframe {
 
 .tips-section {
   width: 40vh;
+  margin: 1em;
 }
 
 .button-3columns {
@@ -217,7 +221,7 @@ iframe {
 }
 
 .text-card {
-  height: 250px;
+  /* height: 250px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -258,14 +262,16 @@ iframe {
   padding: 2%;
   margin: 0 23% 5%;
   /* background-color: #ebf8ea; */
-  background-color: white;
+  background-color: #d7f6cc;
+  border: solid 0.1em #5f8d4e;
   border-radius: 30px;
 }
 
 .factory-section {
   display: flex;
-  justify-content: center;
-  background-color: #B6E2A1;
+  justify-content: space-between;
+  /* background-color: #B6E2A1; */
+  background-color: white;
   /* width: 100vw; */
   /* max-width: 932px; */
   /* max-height: 30em; */
@@ -373,32 +379,46 @@ iframe {
 .product-box{
     grid-template-columns: repeat(3, 1fr);
 }
-.column3-box {
-  grid-template-columns: repeat(2, 1fr);
-}
 .navbar a {
   flex: 1 1 100px;
 }
+.phototextbox {
+  grid-template-columns: repeat(2, 1fr);
+}
+/* .img-testimonal {
+  width: 50%;
+} */
 }
 
 @media (max-width: 500px) {
 .product-box{
     grid-template-columns: repeat(2, 1fr);
 }
+.phototextbox {
+  grid-template-columns: repeat(1, 1fr);
+}
+.column3-box {
+  grid-template-columns: repeat(1, 1fr);
+}
 }
 
 @media (max-width: 400px) {
 .product-box {
   grid-template-columns: repeat(1, 1fr);}
-
 .column3-box {
   grid-template-columns: repeat(1, 1fr);
-}}
+}
+.table {
+  margin: 0;
+}
+}
 
 .input-box {
   margin: 1%;
-  height: 10px;
-  width: 200px;
+  /* height: 10px; */
+  /* width: 200px; */
+  width: 17em;
+  height: 0.01em;
 }
 
 

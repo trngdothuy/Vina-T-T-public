@@ -13,20 +13,38 @@ class ProductsController {
     }
     // FIND ONE 
     async findOne(req ,res){
-        let {batch} = req.params;
-        try{
-            const result = await Products.findOne({fruit_batch: batch});
+        let {input} = req.params;
+         let convInput=Number(input)
+        //  console.log(typeof convInput)
+        {if (!isNaN(convInput)) { // only numbers
+        try{    
+            const result = await Products.findOne({fruit_batch: input});
             console.log(result);
             if (result === null) {
                 res.send({ ok: true, data: `Product ${product} doesn't exist` });
             } else {
                 res.send({ok:true, data:result});
-            } 
+            }}
+        catch(e){
+            console.log(e)
+            res.send({e})
+        }} 
+        else {
+        let convInput = input.charAt(0).toUpperCase() + input.slice(1);
+        try {    
+            const result = await Products.findOne({category: convInput});
+        console.log(result);
+        if (result === null) {
+            res.send({ ok: true, data: `Product ${input} doesn't exist` });
+        } else {
+            res.send({ok:true, data:result});
+        } 
         }
         catch(e){
+            console.log(e)
             res.send({e})
-        }
-    }
+        }}}}
+
     // POST ADD ONE
     async insert (req, res) {
         let { product, category } = req.body;

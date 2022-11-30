@@ -37,7 +37,7 @@ return (
     <div className="factory-section">
         <Carousel autoPlay="true" dynamicHeight="true" infiniteLoop="true" showThumbs={false} useKeyboardArrows="true" >
             <div>
-                <img alt='banner' className="factory-banner" src='https://vinatt.com/en/wp-content/uploads/2019/05/Banner-Fruits-TT-size-giam-kich-thuoc-1400x788.jpg'/>
+                <img alt='banner' className="factory-banner" src='https://innoviet.com/upload/2018/05/dragonfruit-1600-2-1.jpg'/>
                 <div class="bg-textbox">
                 <h2>Factory Tour</h2>
                 <h3>Welcome to our virtual factory tour!</h3>

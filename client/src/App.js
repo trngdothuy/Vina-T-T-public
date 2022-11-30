@@ -69,6 +69,7 @@ function App() {
   };
   const findProduct = async product => {
     try {
+      // debugger
         const res = await axios.get(`${URL}/product/${product}`);
     //  console.log(res)
         setProduct(res.data.data)

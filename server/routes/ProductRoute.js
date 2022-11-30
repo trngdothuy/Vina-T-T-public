@@ -20,6 +20,6 @@ router.post('/update', controller.update);
 
 //  == This route will give us back one product, it will be that with the id we are providing: ==  //
 
-router.get('/:batch', controller.findOne);
+router.get('/:input', controller.findOne);
 
 module.exports = router;

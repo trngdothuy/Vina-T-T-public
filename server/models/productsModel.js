@@ -8,11 +8,12 @@ const productSchema = new mongoose.Schema({
   farmers_name: { type: String, required: true},
   farmers_photo:  { type: String, required: true},
   videos: {type: String, required: true},
-  category: {
-    type: mongoose.Schema.Types.String,
-    required:true,
-    ref:'categories'
-  }
+  // category: {
+  //   type: mongoose.Schema.Types.String,
+  //   required:true,
+  //   ref:'categories'
+  // }
+  category: { type: String, required: true},
 });
 
 module.exports = mongoose.model("products", productSchema);
