@@ -78,7 +78,8 @@ const Register = (props) => {
 				<h4>{message}</h4>
 			</div>
 
-			<><button className="spec-button" disabled={buttonDisable}>Sign Up</button></>
+			<><button className="spec-button" disabled={buttonDisable}>Sign Up</button>
+			<a href = "./login">Already have an account?</a></>
 			
 			
 		</form> </>
