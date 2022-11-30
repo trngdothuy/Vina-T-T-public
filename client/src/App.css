@@ -192,8 +192,8 @@ iframe {
 }
 
 .img-testimonal {
-  width: 50%;
-  /* height: 230px; */
+  width: 15em;
+  height: 15em;
   object-fit: cover;
   border-radius: 10px;
 }
