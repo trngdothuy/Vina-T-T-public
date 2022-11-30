@@ -97,7 +97,7 @@ return (
      cert.map((ele, i) => {
       return (
       <div key={i}>
-          <img alt='productImage' src={ele.photo} />
+          <img alt='productImage' className = "img-cert" src={ele.photo} />
        </div>) })} </div>
 
     <button type= "button" className="spec-button" onClick={()=>navigate('/products')}>See more</button>

@@ -41,7 +41,7 @@ const Tips = () => {
             tips.map((ele, i) => {
             return (
             <div key={i} className="tips-section">
-                <img alt='productImage' className="img-testimonal" src={ele.img} />
+                <img alt='productImage' className="img-tips" src={ele.img} />
                 <h3>{ele.tit}</h3>
                 <p>{ele.content}</p> 
             </div>) })}
