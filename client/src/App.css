@@ -348,7 +348,8 @@ p {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 15vh;  
+  padding: 15vh;
+  width: 100%;  
 }
 
 .factory-banner {

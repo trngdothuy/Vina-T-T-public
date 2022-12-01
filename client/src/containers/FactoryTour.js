@@ -44,7 +44,7 @@ return (
                 </div>
             </div>
 
-            <div>
+            <div className="factory-section">
                 <img alt='farmer' className="factory-banner" src='https://www-file.huawei.com/-/media/corp2020/images/tech4all/cases1/1/guangxi-fttr-video-cv.jpg'/>
                 <div className="factory-textbox">
                     <h5>Vina T&T Factory Tour</h5>
@@ -53,7 +53,7 @@ return (
                 </div>
             </div>
 
-            <div>
+            <div className="factory-section">
                 <img alt='farmer' className="factory-banner" src='https://image.made-in-china.com/2f0j00RqTzceNMhakv/Automatic-Dragon-Fruit-Juice-Paste-Processing-Line-Production-Machine.jpg'/>
                 <div className="factory-textbox">
                     <h5>Virtual Factory Tour</h5>
