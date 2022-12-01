@@ -4,18 +4,35 @@ const express = require('express'),
     categoryRoute = require('./routes/CategoryRoute'),
     productRoute = require('./routes/ProductRoute'),
     userRoute = require('./routes/UserRoute')
+    emailRoute = require('./routes/EmailsRoute')
 
     require("dotenv").config({path: './.env'});
-
+    // to hide env
     const port = process.env.PORT || 3040
 
 
 // to print incoming requests from mongoose in the terminal
 mongoose.set('debug',true)
 
-//================ CORS ================================
+//=============================    CORS SETTINGS    =============================================
+//
 const cors = require("cors");
-app.use(cors());
+// to send request from different url
+// to enable cors for any requests
+app.use(cors())
+
+//or enable it only for the specific url
+// app.options('/sendEmail', cors());
+
+// allowing requests from the front-end to our server with api calls
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  
+    next();
+  });
+//===============================================================================================
 
 // =================== setting to use the body of a request ===================
 app.use(express.urlencoded({extended:true}))
@@ -37,6 +54,19 @@ connecting()
 app.use('/category', categoryRoute);
 app.use('/product', productRoute);
 app.use('/users', userRoute);
+app.use('/emails', emailRoute);
+
+// for serving static files if you need to
+//.use(app.static('../'))
+
+// // serving 404 page
+// var path = require('path');
+
+// // viewed at http://localhost:8080
+// app.use('/', function(req, res) {
+// 	console.log(res)
+// 	res.sendFile(path.join(__dirname + '/../404/'));
+// });
 
 // Admin Bro
 // npm i adminjs @adminjs/express @adminjs/mongoose  tslib express-formidable express-session

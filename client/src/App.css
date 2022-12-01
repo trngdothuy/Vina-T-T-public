@@ -194,9 +194,9 @@ p {
   border-radius: 30px;
 }
 
-iframe {
+/* iframe {
   margin: 30px;
-}
+} */
 
 .testti-card {
   /* color: #FFAE6D; */
@@ -266,6 +266,9 @@ iframe {
   height: 30px;
   /* gap: 0.5em; */
   background-color: #e8ffe8;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
 }
 
 .contact-input1 {
@@ -273,12 +276,23 @@ iframe {
   grid-column: 1 / 3;
   justify-content: center;
   background-color: #c6edc6;
+  /* border: '2px solid black'; */
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
 }
 
 .contact-input2 {
   height: 60px;
   grid-column: 1 / 3;
   background-color: #b7edb7;
+  /* border: 1.7px solid black; */
+  font-family: 'arial';
+  padding: 1em;
+  resize: none;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
 }
 
 .button-section {
@@ -291,15 +305,18 @@ iframe {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5em;
-  grid-template-columns: 250px 250px;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
-  width: 50%;
+  width: 40%;
   padding: 2%;
-  margin: 0 23% 5%;
+  margin: 0 auto 5%;
   /* background-color: #ebf8ea; */
   background-color: #d7f6cc;
-  border: solid 0.1em #5f8d4e;
+  /* border: solid 0.1em #5f8d4e; */
   border-radius: 30px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
 }
 
 .factory-section {
@@ -412,6 +429,12 @@ iframe {
   grid-template-columns: repeat(2, 1fr);}
 }
 
+@media (max-width: 800px) {
+  .contact-form {
+    width: 60%;
+  }
+}
+
 @media (max-width: 700px) {
 .product-box{
     grid-template-columns: repeat(3, 1fr);
@@ -436,6 +459,16 @@ iframe {
 }
 .column3-box {
   grid-template-columns: repeat(1, 1fr);
+}
+.contact-form {
+  width: 80%;
+  padding: 20px 20px 10px 20px;
+}
+.contact-input, .contact-input1 {
+  width: 90%;
+}
+.contact-input2 {
+ width: 85%;
 }
 }
 

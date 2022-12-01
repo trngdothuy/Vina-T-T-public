@@ -1,3 +1,7 @@
+* {
+	border: none;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -22,7 +26,7 @@ body {
 	margin: 10vh auto;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid gray;
+	border: 1px solid black;
 	padding: 2%;
 	border-radius: 5px;
 }

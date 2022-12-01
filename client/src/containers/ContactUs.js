@@ -1,15 +1,53 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from "axios";
 
-function Home () {
+function Home (props) {
 
-    const handleSubmit = (e) => {
-        e.preventDefault(); 
-        };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault(); 
+    //     };
     
         // const handleChange = (e) => {
         // setFruit(e.target.value);
         // console.log("this is input" + fruit)
         // }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        const firstNameInput = event.target.elements.firstname;
+        const lastNameInput = event.target.elements.lastname;
+        const emailInput = event.target.elements.email;
+        const phoneInput = event.target.elements.phone;
+        const addressInput = event.target.elements.address;
+        const subjectInput = event.target.elements.subject;
+        const messageInput = event.target.elements.message;
+
+        var data = { firstname: firstNameInput.value, lastname: lastNameInput.value, email: emailInput.value, phone: phoneInput.value, address: addressInput.value, message: messageInput.value, subject: subjectInput.value };
+        // console.log("--data--", name: event.target.elements.name.value, event.target.elements.email.value, event.target.elements.message.value)
+    
+        // sending request to localhost, in production could be just /sendEmail
+        const sendEmail = async email => {
+            const res = await axios
+                .post('http://localhost:3040/emails/send_email', data)
+                .catch(function (error) {
+                console.log(error);
+                });
+                console.log("res: ", res)
+                firstNameInput.value = '';
+                lastNameInput.value = '';
+                phoneInput.value = '';
+                addressInput.value = '';
+                subjectInput.value = '';
+                emailInput.value = '';
+                subjectInput.value ='';
+                messageInput.value = '';
+                alert('Your message has been sent, thanks!');
+                console.log('--SeNd!--');
+            };
+        sendEmail()
+
+        }
+
 
 return (
     <>
@@ -17,7 +55,7 @@ return (
 <h3>Do you have any questions? Don't hesitate to contact us!</h3>
 
 <div className="phototextbox">  
-<iframe title="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7838.485989032036!2d106.677848!3d10.792692!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x14890126714d21cd!2sVINA%20T%26T%20GROUP!5e0!3m2!1svi!2sus!4v1669219588764!5m2!1svi!2sus" width="600" height="450" style={{border:0}}allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+<iframe title="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7838.485989032036!2d106.677848!3d10.792692!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x14890126714d21cd!2sVINA%20T%26T%20GROUP!5e0!3m2!1svi!2sus!4v1669219588764!5m2!1svi!2sus" width="100%" height="100%" style={{border:0}}allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
 
     <div className="textbox">
     <h2>VINA T&T IMPORT EXPORT TRADING SERVICE CO., LTD</h2>
@@ -36,12 +74,45 @@ return (
 
 <h2>Contact Us </h2>
 <form onSubmit={handleSubmit} className="contact-form">
-    <input type="text" className="contact-input" placeholder="First Name"/>
-    <input type="text" className="contact-input" placeholder="Last Name"/>
-    <input type="email" className="contact-input" placeholder="Email"/>
-    <input type="text" className="contact-input" placeholder="Phone"/>
-    <input type="text" className="contact-input1" placeholder="Address"/>
-    <input type="text" className="contact-input2" placeholder="Type your message here.."/>
+    <input 
+        required={true} 
+        type="text" 
+        className="contact-input" 
+        name="firstname" 
+        placeholder="First Name"/>
+    <input 
+        type="text" 
+        className="contact-input" 
+        name="lastname" 
+        placeholder="Last Name"/>
+    <input 
+        required={true} 
+        type="email" 
+        className="contact-input" 
+        name="email"
+        placeholder="Email"/>
+    <input 
+        type="text" 
+        className="contact-input" 
+        name="phone"
+        placeholder="Phone"/>
+    <input 
+        type="text" 
+        className="contact-input1" 
+        name="address"
+        placeholder="Address"/>
+    <input 
+        required={true} 
+        type="text" 
+        className="contact-input1" 
+        name="subject"
+        placeholder="What do you want to ask about?"/>
+    <textarea 
+        required={true} 
+        type="text" 
+        className="contact-input2" 
+        name="message"
+        placeholder="Type your message here.."/>
     <p className="button-section">Thanks for contacting us!
     <button className="spec-button">Submit</button></p>
     
