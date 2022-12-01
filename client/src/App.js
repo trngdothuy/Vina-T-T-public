@@ -29,6 +29,9 @@ function App() {
   const [category, setCategory] = useState([])
   const [product, setProduct] = useState(null)
   const [singlecategory, setSinglecategory] = useState(null)
+  const [user, setUser] = useState(null)
+  const [userEmail, setUserEmail] = useStateWithCallback(JSON.parse(localStorage.getItem('userEmail')))
+
 
   // const location = useLocation();
   // console.log(location.state)
@@ -66,6 +69,7 @@ function App() {
     // debugger
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    localStorage.removeItem("userEmail");
   };
   const findProduct = async product => {
     try {
@@ -79,7 +83,21 @@ function App() {
     } catch (error) {
         console.log(error);
     }
+    };
+  const findUser = async user => {
+    try {
+      // debugger
+        const res = await axios.get(`${URL}/users/${user}`);
+        console.log('this is res')
+     console.log(res)
+        setUser(res.data.data)
+        console.log('this is user')
+        console.log(res.data.data)
+    } catch (error) {
+        console.log(error);
     }
+    };
+
   return (
     <Router>
     <Navbar isLoggedIn={isLoggedIn} cart={cart}/>
@@ -92,7 +110,7 @@ function App() {
     <Route path="/contact-us" element={<ContactUs/>} />
     <Route
     path="/login"
-    element ={ isLoggedIn ? <Navigate to='/cart' /> : <Login login={login} /> } 
+    element ={ isLoggedIn ? <Navigate to='/cart' /> : <Login login={login} userEmail={userEmail} setUserEmail={setUserEmail} /> } 
     />
     <Route
     path="/register"
@@ -104,7 +122,7 @@ function App() {
     />
     <Route
     path="/account"
-    element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout} /> } 
+    element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout} findUser={findUser} user={user} setUser={setUser} userEmail={userEmail}/> } 
     />
     <Route
     path="/internal"

@@ -20,13 +20,12 @@ const send_email = async (req, res) => {
     // to: field is the destination for this outgoing email, your admin email for example. We can also include several email in an array, for example admin's email and user's email from the form
     to: [process.env.DESTINATION_EMAIL, email],
     replyTo:email,
-    subject: 'New message from ' + firstname,
-    html: '<p>'+ (subject || default_subject) + '</p>'+
+    subject: 'New message from ' + firstname + ' ' + lastname,
+    html: '<p>'+ 'Title:' + (subject || default_subject) + '</p>'+
     '<p><pre>'+message+'</pre></p>'+
-    '<p>'+firstname+'</p>' + 
-    '<p>'+lastname+'</p>' +
-    '<p>'+phone+'</p>'+
-    '<p>'+address+'</p>'
+    '<p>' + 'Email:' +email+'</p>'+
+    '<p>' + 'Phone:' +phone+'</p>'+
+    '<p>'+ 'Address:' + address+'</p>'
   }
  
   try {

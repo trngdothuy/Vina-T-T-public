@@ -95,13 +95,13 @@ async verify_token (req, res) {
     // Display one user - check if admin or user itseld - match token 
     async findOne(req ,res){
       let {user} = req.params;
-      const token = jwt.sign({userEmail:user.email}, jwt_secret, { expiresIn: "1h" });
+      const token = jwt.sign({userEmail:user}, jwt_secret, { expiresIn: "1h" });
       // console.log(token)
       if (!jwt.verify(token, jwt_secret)) {
           res.json({ ok: false, message: "something went wrong" })
         } else {
           try {
-              const result = await Users.findOne({email: user.email});
+              const result = await Users.findOne({email: user});
               // console.log(`this is` + result);
               if (result === null) {
                   res.send({ ok: true, data: `User ${user.email} doesn't exist` });

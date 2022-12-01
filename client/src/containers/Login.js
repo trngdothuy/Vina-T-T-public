@@ -32,6 +32,10 @@ const Login = (props) => {
         name: form.name,
       });
       setMessage(response.data.message);
+      // props.setUserEmail(response.data.email);
+      // console.log(response.data.email) //user email
+      localStorage.setItem("userEmail", JSON.stringify(form.email.toLowerCase()));
+      console.log(localStorage)
       if (response.data.ok) {
         // here after login was successful we extract the email passed from the server inside the token 
         let decodedToken = jose.decodeJwt(response.data.token)

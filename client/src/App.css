@@ -154,6 +154,12 @@ p {
   color: gray;
 }
 
+.button-x {
+  background-color: transparent;
+  color: gray;
+  /* width: 0.5em; */
+}
+
 .img-grid {
   width: 150px;
   height: 150px;
@@ -434,6 +440,9 @@ p {
   .contact-form {
     width: 60%;
   }
+  .factory-textbox {
+    padding: 10vh;
+  }
 }
 
 @media (max-width: 700px) {
@@ -446,9 +455,9 @@ p {
 .phototextbox {
   grid-template-columns: repeat(2, 1fr);
 }
-/* .img-testimonal {
-  width: 50%;
-} */
+.factory-textbox {
+  padding: 0;
+}
 }
 
 @media (max-width: 500px) {
@@ -481,6 +490,10 @@ p {
 }
 .table {
   margin: 0;
+}
+.factory-textbox {
+  padding: 0;
+  font-size: 0%;
 }
 }
 

@@ -1,5 +1,6 @@
 import {useNavigate} from 'react-router-dom'
 import React, {useState, useEffect} from "react";
+// import { createBrotliCompress } from 'zlib';
 
 const Cart = ({cart, setCart, logout}) => {
 	let navigate = useNavigate()
@@ -18,6 +19,8 @@ const Cart = ({cart, setCart, logout}) => {
 		// console.log(temp)
 		setCart(temp)
 		// console.log(categories)
+		localStorage.setItem("cart", JSON.stringify(temp));
+            console.log(localStorage)
 		}
 	
 	const handleClickAdd = (i) => {
@@ -25,6 +28,17 @@ const Cart = ({cart, setCart, logout}) => {
 		temp[i].quantity += 1
 		// console.log(temp)
 		setCart(temp)
+		localStorage.setItem("cart", JSON.stringify(temp));
+            console.log(localStorage)
+		}
+
+	const handleClickDelete = (i) => {
+		let temp = [...cart]
+		temp.splice(i, 1)
+		// console.log(temp)
+		setCart(temp)
+		localStorage.setItem("cart", JSON.stringify(temp));
+            console.log(localStorage)
 		}
 
 	
@@ -33,13 +47,19 @@ const Cart = ({cart, setCart, logout}) => {
 	let cart2 = [...cart]
 	let prices = cart2.map(e=>e.price*e.quantity)
 	if (prices.length !== 0) {
-		setTotal(prices.reduce((a,b)=>a+b))
+		let subtotal = prices.reduce((a,b)=>a+b)
+		setTotal(subtotal<=500?subtotal+5:subtotal)
 	} else {
 		setTotal(0)
 	}	
-	},[(cart)])
-	
+	},[(cart)]);
 
+	// useEffect(()=> {
+	// 	if (total < 500) {
+	// 		setTotal(total + 5)
+	// 	}
+	// },[total])
+	
 	return (
 		<div className="secret_page">
 			<h1>Cart</h1>
@@ -56,7 +76,7 @@ const Cart = ({cart, setCart, logout}) => {
 
 			{total > 500 ? 
         <p style={{color:"green"}}>Freeshipping</p> :       
-        <p style={{color:"red"}}>Shipping will be charged</p>}
+        <p style={{color:"red"}}>Shipping of $5 will be charged</p>}
 
 		<div className="wrapper">
 				{cart && cart.map( (item, i) => {
@@ -66,11 +86,12 @@ const Cart = ({cart, setCart, logout}) => {
 							<p>{item.name}</p> 
 							<p>${item.price}</p> 
 							<div>
-							<button onClick={()=>handleClickMinus(i)}>-</button> 
+							<button className="button-x" onClick={()=>handleClickMinus(i)}>-</button> 
 								{item.quantity}
-							<button onClick={()=>handleClickAdd(i)}>+</button>
+							<button className="button-x" onClick={()=>handleClickAdd(i)}>+</button>
 							</div>
 							<p>${item.price * item.quantity}</p>
+							<button className="button-x" onClick={()=>handleClickDelete(i)}>x</button>
 						</div> )})
 				}
        </div>
