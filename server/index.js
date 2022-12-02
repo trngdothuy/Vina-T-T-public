@@ -87,5 +87,14 @@ const router = AdminJSExpress.buildRouter(admin);
 app.use(admin.options.rootPath, router);
 // end admin bro
 
+const path = require('path');
+
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
 // Set the server to listen on port 
 app.listen(port, () => console.log(`server listening on port ${port}`));

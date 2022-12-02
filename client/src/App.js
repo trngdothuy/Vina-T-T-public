@@ -116,7 +116,6 @@ function App() {
   return (
     <Router>
     <Navbar isLoggedIn={isLoggedIn} cart={cart}/>
-    <Footer/>
     <Routes>
     <Route path="/" element={<Home/>} />
     <Route path="/products" 
@@ -145,6 +144,7 @@ function App() {
     element ={ !isLoggedIn || !admin ? <Navigate to='/' /> : <Internal logout={logout}  /> } 
     />
     </Routes>
+    {/* <Footer/> */}
     </Router>
     );
 }

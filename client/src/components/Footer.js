@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
 return (
-	<div className="box">
+	<div className="footer">
 	<h1 style={{ color: "green",
 				textAlign: "center",
 				marginTop: "-50px" }}>

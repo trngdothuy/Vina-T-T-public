@@ -68,8 +68,9 @@ button {
 	justify-content: center;
 }
 
-.box {
-	padding: 80px 60px;
+.footer {  
+/* display: none; */
+	/* padding: 80px 60px; */
   background: black;
   position: absolute;
   bottom: 0;
