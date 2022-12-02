@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 // react-scripts from version 5 shipped with react 18 is not supporting jsonwebtoken so we need to use alternative like jose to decode the JWT token in the client
 import * as jose from 'jose'
 
-const Login = (props) => {
+const Login = (login, userEmail, setUserEmail, findUser) => {
 
   const [form, setValues] = useState({
     email: "",
@@ -42,7 +42,7 @@ const Login = (props) => {
         // and now we now which user is logged in in the client so we can manipulate it as we want, like fetching data for it or we can pass the user role -- admin or not -- and act accordingly, etc...
         console.log("Email extracted from the JWT token after login: ", decodedToken.userEmail)
         setTimeout(() => {
-          props.login(response.data.token,response.data.admin,response.data.email);
+          login(response.data.token,response.data.admin,response.data.email);
           navigate("/cart");
         }, 2000);
       }

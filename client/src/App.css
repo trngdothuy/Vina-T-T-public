@@ -422,6 +422,14 @@ p {
   border-style: double;
 }
 
+.account-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 24vw;
+}
+
 @media (max-width: 950px) {
 .phototextbox {
   grid-template-columns: repeat(1, 1fr);}

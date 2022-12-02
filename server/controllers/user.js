@@ -160,21 +160,22 @@ async verify_token (req, res) {
     // UPDATE info
 
     async update (req, res){
-        let { old_user, new_user } = req.body;
+        let { user, newUser } = req.body;
         try{
             const updated = await Users.findOneAndUpdate(
-                {email: old_user.email},
-                {$set:{ password: new_user.password, 
-                    name: new_user.name, 
-                    dob: new_user.dob, 
-                    address: new_user.address, 
-                    phone_number: new_user.phone_number, 
-                    favorite: new_user.favorite, 
-                    order_history: new_user.order_history}});
+                {email: user.email},
+                {$set:{ password: newUser.password, 
+                    firstname: newUser.firstname, 
+                    lastname: newUser.lastname, 
+                    dob: newUser.dob, 
+                    address: newUser.address, 
+                    tel: newUser.tel, 
+                    favorite: newUser.favorite, 
+                    order_history: newUser.order_history}});
              if (updated === null) {
-                res.send({ ok: true, data: `user ${old_user.email} doesn't exist` })
+                res.send({ ok: true, data: `user ${user.email} doesn't exist` })
              } else {
-                res.send({ ok: true, data: `user ${new_user.email} updated successfully` });
+                res.send({ ok: true, data: `user ${newUser.email} updated successfully` });
              }
         }
         catch(error){

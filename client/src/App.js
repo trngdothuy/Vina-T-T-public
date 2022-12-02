@@ -10,8 +10,9 @@ import FactoryTour from "./containers/FactoryTour.js";
 import Products from "./containers/Products.js";
 import Tips from "./containers/Tips.js";
 import Internal from "./containers/Internal.js";
-import Navbar from "./components/Navbar.js";
 import Account from "./containers/Account.js";
+import Navbar from "./components/Navbar.js";
+import Footer from "./components/Footer.js";
 import "./App.css";
 import { URL } from "./config";
 // import {useLocation, useNavigate} from 'react-router-dom';
@@ -29,8 +30,9 @@ function App() {
   const [category, setCategory] = useState([])
   const [product, setProduct] = useState(null)
   const [singlecategory, setSinglecategory] = useState(null)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState()
   const [userEmail, setUserEmail] = useStateWithCallback(JSON.parse(localStorage.getItem('userEmail')))
+  const [newUser, setNewUser] = useStateWithCallback({...user},()=>{console.log(newUser)})
 
 
   // const location = useLocation();
@@ -88,10 +90,23 @@ function App() {
     try {
       // debugger
         const res = await axios.get(`${URL}/users/${user}`);
-        console.log('this is res')
+        console.log('this is res after finding')
      console.log(res)
         setUser(res.data.data)
-        console.log('this is user')
+        console.log('this is user after finding')
+        console.log(res.data.data)
+    } catch (error) {
+        console.log(error);
+    }
+    };
+  const updateUser = async (user,newUser) => {
+    try {
+      // debugger
+        const res = await axios.post(`${URL}/users/update`,{user,newUser});
+        console.log('this is res after updating')
+        console.log(res)
+        setUser(res.data.data)
+        console.log('this is user after updating')
         console.log(res.data.data)
     } catch (error) {
         console.log(error);
@@ -101,6 +116,7 @@ function App() {
   return (
     <Router>
     <Navbar isLoggedIn={isLoggedIn} cart={cart}/>
+    <Footer/>
     <Routes>
     <Route path="/" element={<Home/>} />
     <Route path="/products" 
@@ -110,7 +126,7 @@ function App() {
     <Route path="/contact-us" element={<ContactUs/>} />
     <Route
     path="/login"
-    element ={ isLoggedIn ? <Navigate to='/cart' /> : <Login login={login} userEmail={userEmail} setUserEmail={setUserEmail} /> } 
+    element ={ isLoggedIn ? <Navigate to='/cart' /> : <Login login={login} userEmail={userEmail} setUserEmail={setUserEmail} findUser={findUser} /> } 
     />
     <Route
     path="/register"
@@ -122,7 +138,7 @@ function App() {
     />
     <Route
     path="/account"
-    element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout} findUser={findUser} user={user} setUser={setUser} userEmail={userEmail}/> } 
+    element ={ !isLoggedIn ? <Navigate to='/' /> : <Account logout={logout} findUser={findUser} user={user} setUser={setUser} userEmail={userEmail} updateUser={updateUser} newUser={newUser} setNewUser={setNewUser}/> } 
     />
     <Route
     path="/internal"
