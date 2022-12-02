@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 // react-scripts from version 5 shipped with react 18 is not supporting jsonwebtoken so we need to use alternative like jose to decode the JWT token in the client
 import * as jose from 'jose'
 
-const Login = (login, userEmail, setUserEmail, findUser) => {
+const Login = ({login, userEmail, setUserEmail, findUser}) => {
 
   const [form, setValues] = useState({
     email: "",

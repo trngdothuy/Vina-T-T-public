@@ -14,7 +14,7 @@ const Factorytour = () => {
         {name: "Harvesting Process", photo: "https://cdnimgen.vietnamplus.vn/uploaded/wbxx/2019_05_22/fruit_farmers.jpg"},
         {name: "Working Area", photo: "https://www.itfnet.org/v1/wp-content/uploads/2020/02/vietnam2-1.jpg"},
         {name: "Cleaning Process", photo: "https://www.tropicalfood.net/wp-content/uploads/2019/08/top_mobile_linea_estrazione_mango.jpg"},
-        {name: "Smart Factory", photo: "http://www.smartmanufacturingtoday.com/wp-content/uploads/2022/04/Fruit-packing-PIC-701x467.jpg"},
+        {name: "Smart Factory", photo: "https://www.iotworldtoday.com/files/2020/02/smart-factory-concept-2020-724x432.jpg"},
         {name: "Packaging Process", photo: "https://www.goodfruit.com/wp-content/uploads/giftInsideAmazon-16908tj-1.jpg"},
         {name: "Exhibition Room", photo: "https://c8.alamy.com/comp/2H5378Y/shanghai-6th-nov-2021-fruits-are-on-display-at-the-food-and-agricultural-products-exhibition-area-of-the-4th-china-international-import-expo-ciie-in-east-chinas-shanghai-nov-6-2021-various-foods-from-around-the-world-are-showcased-during-the-4th-ciie-in-shanghai-credit-hao-zhaoxinhuaalamy-live-news-2H5378Y.jpg"},
         {name: "Test Lab", photo: "http://cen.acs.org/content/dam/cen/100/1/WEB/10001-feature2-lab.jpg"},
