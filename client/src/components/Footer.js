@@ -5,8 +5,8 @@ return (
 	<div className="footer">
 	<h1 style={{ color: "green",
 				textAlign: "center",
-				marginTop: "-50px" }}>
-		Trang Do Thuy, 2022
+				 }}>
+		<p>Created by Trang Do Thuy, 2022</p>
 	</h1>
 	<div className="container">
 		<div className="row">
@@ -30,7 +30,7 @@ return (
 			<FooterLink href="#">Indore</FooterLink>
 			<FooterLink href="#">Mumbai</FooterLink>
 		</Column> */}
-		<div className="column">
+		{/* <div className="column">
 			<div className="heading">Social Media</div>
 			<div className="footerLink" href="#">
 			<i className="fab fa-facebook-f">
@@ -60,7 +60,7 @@ return (
 				</span>
 			</i>
 			</div>
-		</div>
+		</div> */}
 		</div>
 	</div>
 	</div>

@@ -72,10 +72,11 @@ button {
 .footer {  
 /* display: none; */
 	/* padding: 80px 60px; */
-  background: black;
-  position: absolute;
+  background: #eeffba00;
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
+
 }
 
 .container {

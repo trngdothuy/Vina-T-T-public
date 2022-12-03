@@ -144,7 +144,7 @@ function App() {
     element ={ !isLoggedIn || !admin ? <Navigate to='/' /> : <Internal logout={logout}  /> } 
     />
     </Routes>
-    {/* <Footer/> */}
+    <Footer/>
     </Router>
     );
 }
