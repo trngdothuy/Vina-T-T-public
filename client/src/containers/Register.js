@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { URL } from '../config';
 import {useNavigate} from 'react-router-dom'
@@ -11,7 +11,7 @@ const Register = (props) => {
         name: '',
 	});
 	const [ message, setMessage ] = useState('');
-	let buttonDisable = true
+	const [buttonDisable, setButtonDisable] = useState(true)
 	const [checkboxActive, setCheckboxActive] = useState(false)
 
 	const navigate=useNavigate()
@@ -40,11 +40,16 @@ const Register = (props) => {
 		} catch (error) {
 			console.log(error);
 		}
-	};
-
-	if (form.email.length > 0 && form.password.length > 8 && form.password2.length > 8 && form.name.length > 0 && checkboxActive === true) {
-		buttonDisable = false
 	}
+
+	useEffect(()=> {
+		// debugger
+		if (form.email.length > 0 && form.password.length > 8 && form.password2.length > 8 && form.name.length > 0 && checkboxActive === true) {
+		setButtonDisable(false)
+		console.log(buttonDisable)
+	}
+	}, [])
+
 
 	function handleChangeCheckbox(e) {
 		e.target.checked ? setCheckboxActive(true) : setCheckboxActive(false)

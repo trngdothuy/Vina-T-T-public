@@ -28,6 +28,7 @@ const Account = ({logout, findUser, user, setUser, userEmail, updateUser}) => {
 		// console.log('this is new user after submitting')
 		// console.log(newUser)
 		updateUser(user, newUser)
+		alert("You successfully update your data!")
 	}
 	
 	const handleChange = (e) => {

@@ -5,6 +5,8 @@ import React, {useState, useEffect} from "react";
 const Cart = ({cart, setCart, logout}) => {
 	let navigate = useNavigate()
 	const [total, setTotal] = useState(0)
+	const [shipInfo, setShipInfo] = useState()
+	const [colorShipInfo, setColorShipInfo] = useState()
 
 	console.log('cart beginning')
 	console.log(cart)
@@ -54,6 +56,19 @@ const Cart = ({cart, setCart, logout}) => {
 	}	
 	},[(cart)]);
 
+	useEffect(()=> {
+		if (cart.length === 0) {
+			setShipInfo("Your cart is empty")
+			setColorShipInfo("red")
+		} else if (total > 500) {
+			setShipInfo("Freeshipping")
+			setColorShipInfo("green")
+		} else {
+			setShipInfo("Shipping of $5 will be charged")
+			setColorShipInfo('red')
+		}
+	})
+
 	// useEffect(()=> {
 	// 	if (total < 500) {
 	// 		setTotal(total + 5)
@@ -73,10 +88,9 @@ const Cart = ({cart, setCart, logout}) => {
 				logout
 			</button> */}
 			<span><h2>Total: ${total}</h2></span>
+			<p style={{color:(colorShipInfo)}}>{shipInfo}</p>
 
-			{total > 500 ? 
-        <p style={{color:"green"}}>Freeshipping</p> :       
-        <p style={{color:"red"}}>Shipping of $5 will be charged</p>}
+
 
 		<div className="wrapper">
 				{cart && cart.map( (item, i) => {
@@ -86,7 +100,7 @@ const Cart = ({cart, setCart, logout}) => {
 							<p>{item.name}</p> 
 							<p>${item.price}</p> 
 							<div>
-							<button className="button-x" onClick={()=>handleClickMinus(i)}>-</button> 
+							<button className="button-x"onClick={()=>handleClickMinus(i)}>-</button> 
 								{item.quantity}
 							<button className="button-x" onClick={()=>handleClickAdd(i)}>+</button>
 							</div>
