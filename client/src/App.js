@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom
 import Home from "./containers/Home.js";
 import Login from "./containers/Login.js";
 import Register from "./containers/Register.js";
-import Cart from "./containers/Cart.js";
+// import Stripe from "./components/stripe.js";
 import ContactUs from "./containers/ContactUs.js";
 import FactoryTour from "./containers/FactoryTour.js";
 import Products from "./containers/Products.js";
@@ -17,6 +17,9 @@ import "./App.css";
 import { URL } from "./config";
 // import {useLocation, useNavigate} from 'react-router-dom';
 import useStateWithCallback from "use-state-with-callback";
+import Stripe from "./components/stripe";
+import PaymentSuccess from "./containers/payment_success";
+import PaymentError from "./containers/payment_error";
 
 function App() {
 
@@ -133,7 +136,13 @@ function App() {
     />
     <Route
     path="/cart"
-    element ={<Cart cart={cart} setCart={setCart} singlecategory={singlecategory} /> } 
+    element ={<Stripe cart={cart} setCart={setCart} singlecategory={singlecategory} /> }  />
+    <Route 
+    path="/payment/success"
+    element={<PaymentSuccess/>}/>
+    <Route 
+    path="/payment/error"
+    element={<PaymentError/>}
     />
     <Route
     path="/account"

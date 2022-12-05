@@ -9,7 +9,7 @@ return (
 		<p>Created by Trang Do Thuy, 2022</p>
 	</h1>
 	<div className="container">
-		<div className="row">
+		<div className="rowfooter">
 		{/* <Column>
 			<Heading>About Us</Heading>
 			<FooterLink href="#">Aim</FooterLink>

@@ -41,11 +41,12 @@ const SubProduct = ({singlecategory, product, inputIsNumber}) => {
         <div className="normaltextbox">
             <h3>Nutrient Table</h3>
             <p><i>per 100g(3.5oz)</i></p>
-            {singlecategory && singlecategory.nutrients.map((cate, i) => <div key={i} className="table">
+            <div className="table">{singlecategory && singlecategory.nutrients.map((cate, i) => <div key={i} className="row">
                         <p>{cate.key}:</p> 
                         <p>{cate.value}</p> 
-                    </div> )
-            }
+                    </div> 
+            )}</div>
+            
         </div>
         
         <div className="normaltextbox">

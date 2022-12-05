@@ -1,9 +1,14 @@
 import {useNavigate} from 'react-router-dom'
 import React, {useState, useEffect} from "react";
 // import { createBrotliCompress } from 'zlib';
+import {useStripe} from '@stripe/react-stripe-js';
+import axios from 'axios';
+import { URL } from "../config";
 
 const Cart = ({cart, setCart, logout}) => {
-	let navigate = useNavigate()
+	let navigate = useNavigate();
+	let stripe = useStripe();
+
 	const [total, setTotal] = useState(0)
 	const [shipInfo, setShipInfo] = useState()
 	const [colorShipInfo, setColorShipInfo] = useState()
@@ -67,7 +72,43 @@ const Cart = ({cart, setCart, logout}) => {
 			setShipInfo("Shipping of $5 will be charged")
 			setColorShipInfo('red')
 		}
-	})
+	},[]);
+
+	// 1. When we click PAY button this function triggers first 
+	const createCheckoutSession = async () => {
+
+	try {
+		// 2. Sending request to the create_checkout_session controller and passing products to be paid for
+		const response = await axios.post(`${URL}/payment/create-checkout-session`, { cart });
+		return response.data.ok
+		// we save session id in localStorage to get it later
+		? (localStorage.setItem('sessionId', JSON.stringify(response.data.sessionId)),
+			// 9. If server returned ok after making a session we run redirect() and pass id of the session to the actual checkout / payment form
+			redirect(response.data.sessionId))
+		: navigate('/payment/error');
+	  } catch (error) {
+		navigate('/payment/error');
+	  }
+	};
+  
+	const redirect = (sessionId) => {
+  // 10. This redirects to checkout.stripe.com and if charge/payment was successful send user to success url defined in create_checkout_session in the controller (which in our case renders payment_success.js)
+  stripe
+  .redirectToCheckout({
+		  // Make the id field from the Checkout Session creation API response
+		  // available to this file, so you can provide it as parameter here
+		  // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+		  sessionId: sessionId
+		})
+  .then(function (result) {
+		  // If `redirectToCheckout` fails due to a browser or network
+		  // error, display the localized error message to your customer
+		  // using `result.error.message`.
+		});
+  };
+	//=====================================================================================
+	//=====================================================================================
+	//=====================================================================================
 
 	// useEffect(()=> {
 	// 	if (total < 500) {
@@ -109,8 +150,7 @@ const Cart = ({cart, setCart, logout}) => {
 						</div> )})
 				}
        </div>
-
-			
+		<><button onClick={() => createCheckoutSession()}>Pay</button></>
 		</div>
 	);
 };

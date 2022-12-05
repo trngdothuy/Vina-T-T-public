@@ -34,9 +34,13 @@ body {
 	margin: 10vh auto;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid black;
-	padding: 2%;
+	/* border: 1px solid black; */
+	padding: 3% 3% 7%;
 	border-radius: 5px;
+	background-color: #e8ffe8;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
 }
 
 label , input {

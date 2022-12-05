@@ -55,6 +55,7 @@ app.use('/category', categoryRoute);
 app.use('/product', productRoute);
 app.use('/users', userRoute);
 app.use('/emails', emailRoute);
+app.use('/payment', require('./routes/PaymentRoute.js'));
 
 // for serving static files if you need to
 //.use(app.static('../'))

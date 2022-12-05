@@ -9,16 +9,34 @@ const Register = (props) => {
 		password: '',
 		password2: '',
         name: '',
+		checked: '',
 	});
 	const [ message, setMessage ] = useState('');
 	const [buttonDisable, setButtonDisable] = useState(true)
-	const [checkboxActive, setCheckboxActive] = useState(false)
+	const [checked, setChecked] = useState(false)
 
 	const navigate=useNavigate()
+
+	function checkbutton () {
+		//debugger
+		(form.email.length > 0 && form.password.length >= 8 && form.password2.length >= 8 && form.name.length > 0 && checked === true) ?
+		setButtonDisable(false)
+		: setButtonDisable(true)
+		console.log(buttonDisable) };
 
 	const handleChange = (e) => {
 		setValues({ ...form, [e.target.name]: e.target.value });
 	};
+
+	useEffect(() => {//debugger
+		checkbutton()
+	}, [checked, form]) ;
+
+// 	function handleChangeCheckbox(e) {debugger
+// 		setCheckboxActive(e.target.checked) 
+// 	   console.log(checkboxActive)
+// 	   checkbutton()
+//    };
 
 	const handleSubmit = async (e) => {
 		// debugger
@@ -40,26 +58,14 @@ const Register = (props) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
-	useEffect(()=> {
-		// debugger
-		if (form.email.length > 0 && form.password.length > 8 && form.password2.length > 8 && form.name.length > 0 && checkboxActive === true) {
-		setButtonDisable(false)
-		console.log(buttonDisable)
-	}
-	}, [])
-
-
-	function handleChangeCheckbox(e) {
-		e.target.checked ? setCheckboxActive(true) : setCheckboxActive(false)
-	}
 
 	return (
 		<>
 		<h1>Sign Up</h1>
 		
-		<form onSubmit={handleSubmit} onChange={handleChange} className="form_container">
+		<form onSubmit={handleSubmit} onChange={handleChange}className="form_container">
 			<label>Email</label>
 			<input type="email" name="email" placeholder="Your email"/>
 
@@ -76,7 +82,7 @@ const Register = (props) => {
             <label>Name</label>
 			<input name="name" placeholder="Your name"/>
 
-			<div className="checkbox-wrapper"><input type="checkbox" onChange={handleChangeCheckbox} required /> <span>I agree all terms and conditions</span></div>
+			<div className="checkbox-wrapper"><input type="checkbox" checked={checked} onChange={e => setChecked(e.target.checked)} required /> <span>I agree all terms and conditions</span></div>
 			
 
 			<div className="message">
