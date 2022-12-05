@@ -112,7 +112,7 @@ return (
             <img className="img-grid" alt='productImage' src={cate.photo} />
             <p>{cate.category}</p> 
             <div className="hidden">
-                <p>Price/kg: ${cate.price}</p>
+                <p>Price/kg: €{cate.price}</p>
                 <p>Quantity:  
                 <select className={cate.category} name={cate.price} id={cate.photo} onChange={handleChangeCart}>
                     <option value="0">kg</option>

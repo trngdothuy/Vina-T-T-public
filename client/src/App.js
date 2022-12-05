@@ -139,7 +139,7 @@ function App() {
     element ={<Stripe cart={cart} setCart={setCart} singlecategory={singlecategory} /> }  />
     <Route 
     path="/payment/success"
-    element={<PaymentSuccess/>}/>
+    element={<PaymentSuccess cart={cart} />}/>
     <Route 
     path="/payment/error"
     element={<PaymentError/>}

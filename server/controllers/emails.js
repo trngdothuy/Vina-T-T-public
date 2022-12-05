@@ -26,11 +26,38 @@ const send_email = async (req, res) => {
     '<p>' + 'Email:' +email+'</p>'+
     '<p>' + 'Phone:' +phone+'</p>'+
     '<p>'+ 'Address:' + address+'</p>'
-  }
+  }}
+
+  const send_email_confirm = async (req, res) => {
+    
+    console.log(req.body)
+    const { name, email, products } = req.body;
+    console.log(products)
+    const default_subject = 'Thank you for your order';
+    const mailOptions = {
+      // to: field is the destination for this outgoing email, your admin email for example. We can also include several email in an array, for example admin's email and user's email from the form
+      to: [process.env.DESTINATION_EMAIL, email],
+      replyTo:process.env.DESTINATION_EMAIL,
+      subject: name + ', thank you for your order',
+      html: `<span><p>Title: ${(default_subject)}</p>
+      <p><pre>Thank you for placing order at Vina T&T</pre></p>
+      <p>${email}</p>
+      <p>Here is the list of your products</p>
+      <div id="prods"></div>
+      </span>
+      <script>
+      let productsHTML = '';
+      for (var i=0; i <= ${products.length} ; i++) 
+      productsHTML = productsHTML + <b>Name: ${products[i].name} Price:${products[i].price} Quantity:   ${products[i].quantity}</b>
+      }
+      document.getElementById('prods').innerHTML = productsHTML;
+      </script>
+      `
+    }
  
   try {
-    const success = await transport.sendMail(mailOptions);
-    console.log("success: ", success)
+    const success = await transport.sendMail(mailOptions)
+    console.log("success:", success)
     return res.json({ ok: true, message: 'email sent' });
   } catch (err) {
     console.log(err)
@@ -38,4 +65,4 @@ const send_email = async (req, res) => {
   }
 };
 
-module.exports = { send_email };
+module.exports = { send_email,send_email_confirm };

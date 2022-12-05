@@ -436,6 +436,10 @@ p {
   width: 24vw;
 }
 
+.imagePayment {
+  width: 10%;
+}
+
 @media (max-width: 950px) {
 .phototextbox {
   grid-template-columns: repeat(1, 1fr);}

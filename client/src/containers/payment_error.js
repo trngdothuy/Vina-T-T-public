@@ -8,7 +8,7 @@ const PaymentError = (props) => {
         <div className="message_box_left">
           <img
             alt="sad_icon"
-            className="image"
+            className="imagePayment"
             src={
               "http://cdn.onlinewebfonts.com/svg/img_56533.png"
             }

@@ -69,15 +69,16 @@ const Cart = ({cart, setCart, logout}) => {
 			setShipInfo("Freeshipping")
 			setColorShipInfo("green")
 		} else {
-			setShipInfo("Shipping of $5 will be charged")
+			setShipInfo("Shipping of €5 will be charged")
 			setColorShipInfo('red')
 		}
 	},[]);
 
 	// 1. When we click PAY button this function triggers first 
 	const createCheckoutSession = async () => {
-
+console.log(URL)
 	try {
+		//debugger
 		// 2. Sending request to the create_checkout_session controller and passing products to be paid for
 		const response = await axios.post(`${URL}/payment/create-checkout-session`, { cart });
 		return response.data.ok
@@ -128,7 +129,7 @@ const Cart = ({cart, setCart, logout}) => {
 			>
 				logout
 			</button> */}
-			<span><h2>Total: ${total}</h2></span>
+			<span><h2>Total: €{total}</h2></span>
 			<p style={{color:(colorShipInfo)}}>{shipInfo}</p>
 
 
@@ -139,13 +140,13 @@ const Cart = ({cart, setCart, logout}) => {
 						<div key={i} className="card">
 							<img alt='productImage' className="img-grid" src={item.photo} />
 							<p>{item.name}</p> 
-							<p>${item.price}</p> 
+							<p>€{item.price}</p> 
 							<div>
 							<button className="button-x"onClick={()=>handleClickMinus(i)}>-</button> 
 								{item.quantity}
 							<button className="button-x" onClick={()=>handleClickAdd(i)}>+</button>
 							</div>
-							<p>${item.price * item.quantity}</p>
+							<p>€{item.price * item.quantity}</p>
 							<button className="button-x" onClick={()=>handleClickDelete(i)}>x</button>
 						</div> )})
 				}
