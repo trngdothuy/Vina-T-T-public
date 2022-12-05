@@ -4,7 +4,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // 3. To create a payment session in Stripe 
 const create_checkout_session = async (req, res) => {
   try {
-    debugger
+    //debugger
     // 4. getting products from the body
     let { cart } = req.body;
     if (cart.length < 1 || !cart)
@@ -58,7 +58,7 @@ const create_checkout_session = async (req, res) => {
 // 14. Controller triggers by the incoming req with session id
 const checkout_session = async (req, res) => {
   try {
-    debugger
+    //debugger
     const { sessionId } = req.query;
     // 15. We execute request to Stripe to get data for the specific session ID
     const session = await stripe.checkout.sessions.retrieve(sessionId, {expand: ['line_items']});
