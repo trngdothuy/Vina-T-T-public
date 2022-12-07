@@ -13,6 +13,7 @@ import Internal from "./containers/Internal.js";
 import Account from "./containers/Account.js";
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
+import Scrolling from "./components/scrolling.js";
 import "./App.css";
 import { URL } from "./config";
 // import {useLocation, useNavigate} from 'react-router-dom';
@@ -118,6 +119,7 @@ function App() {
 
   return (
     <Router>
+      <Scrolling/>
     <Navbar isLoggedIn={isLoggedIn} cart={cart}/>
     <Routes>
     <Route path="/" element={<Home/>} />
