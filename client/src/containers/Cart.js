@@ -76,7 +76,7 @@ const Cart = ({cart, setCart, logout}) => {
 
 	// 1. When we click PAY button this function triggers first 
 	const createCheckoutSession = async () => {
-console.log(URL)
+// console.log(URL)
 	try {
 		//debugger
 		// 2. Sending request to the create_checkout_session controller and passing products to be paid for
