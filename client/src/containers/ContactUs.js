@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from "axios";
 
-function Home (props) {
+function ContactUs (props) {
 
     // const handleSubmit = (e) => {
     //     e.preventDefault(); 
@@ -129,4 +129,4 @@ return (
 
 
 
-export default Home;
+export default ContactUs;
