@@ -237,7 +237,6 @@ p {
 }
 
 
-
 .column3-box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -547,4 +546,13 @@ p {
   to {
     transform: rotate(360deg);
   }
+}
+
+.rowfooter {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-content: space-around;
+  margin-bottom: 10px;
+  gap: 20px;
 }

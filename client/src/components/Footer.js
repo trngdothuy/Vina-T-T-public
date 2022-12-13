@@ -6,10 +6,13 @@ return (
 	<h1 style={{ color: "green",
 				textAlign: "center",
 				 }}>
-		<p>Created by Trang Do Thuy, 2022</p>
+		<p>Created by © 2022 Trang Do Thuy</p>
 	</h1>
 	<div className="container">
 		<div className="rowfooter">
+		<a class="footer-link" href="https://www.linkedin.com/in/trang-do-thuy-183435141/">LinkedIn</a>
+		<a class="footer-link" href="https://www.linkedin.com/in/trang-do-thuy-183435141/">Website</a>
+		<a class="footer-link" href="https://www.linkedin.com/in/trang-do-thuy-183435141/">Facebook</a>
 		{/* <Column>
 			<Heading>About Us</Heading>
 			<FooterLink href="#">Aim</FooterLink>
