@@ -4,9 +4,9 @@ const Footer = () => {
 return (
 	<div className="footer">
 	<h1 style={{ color: "green",
-				textAlign: "center",
+				textAlign: "center",fontSize:"x-small"
 				 }}>
-		<p>Created by © 2022 Trang Do Thuy</p>
+		<p>© 2022 Trang Do Thuy</p>
 	</h1>
 	<div className="container">
 		<div className="rowfooter">
